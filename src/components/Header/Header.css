@@ -1,0 +1,39 @@
+.header {
+    background-color: #202020;
+    min-height: 74px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: right;
+    color: #FFFFFF;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.header_main {
+    background-color: rgba(7, 48, 66, 1);
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 440px) {
+    .header {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .header__logo {
+        padding-top: 4px;
+    }
+}

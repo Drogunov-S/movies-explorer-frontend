@@ -1,0 +1,138 @@
+.about-project {
+    padding-right: 70px;
+    padding-left: 70px;
+    padding-bottom: 110px;
+    background-color: #202020;
+}
+
+.about-project__title {
+    font-family: 'Inter', sans-serif, serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    text-align: left;
+    padding-bottom: 21px;
+    border-bottom: 1px solid #DADADA;
+    margin: 0;
+    padding-top: 112px;
+}
+
+.about-project__about {
+    margin: 70px 0 0 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 26px 52px;
+}
+
+.about-project__subtitle {
+    font-family: 'Inter', sans-serif, serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    text-align: left;
+    margin: 0;
+}
+
+.about-project__text {
+    font-family: 'Inter', sans-serif, serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+    text-align: left;
+    margin: 26px 0 0 0;
+}
+
+.about-project__graf {
+    margin-top: 110px;
+}
+
+.graf {
+    display: grid;
+    grid-template-rows: max-content max-content;
+    grid-template-columns: 20% 80%;
+    width: 100%;
+}
+
+.graf__text {
+    font-family: 'Inter', sans-serif, serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #8B8B8B;
+    display: block;
+    margin-top: 14px;
+    /*min-height: 31px;*/
+}
+
+.graf__parts {
+    min-height: 36px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif, serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.graf__item-1 {
+    /*width: calc(100% / 5);*/
+}
+
+.graf__part-1 {
+    background-color: #3DDC84;
+    color: black;
+}
+
+.graf__text-1 {
+    font-family: 'Inter', sans-serif serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.graf__item-2 {
+    /*width: calc(100% / 4);*/
+}
+
+.graf__part-2 {
+    background-color: #303030;
+}
+
+@media (max-width: 820px) {
+    .about-project {
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+
+    .about-project__about {
+        column-gap: 38px;
+    }
+
+    .about-project__text {
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 21px;
+    }
+
+    .graf {
+        margin-top: 93px;
+        grid-template-columns: 21% 79%;
+    }
+}

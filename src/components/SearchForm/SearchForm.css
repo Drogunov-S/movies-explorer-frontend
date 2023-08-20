@@ -1,0 +1,107 @@
+.search-form {
+    /*background: #2F2F2F;*/
+    /*border-radius: 40px;*/
+    width: 100%;
+    padding: 70px 0;
+    /*padding-bottom: 70px;*/
+    border-bottom: 1px solid #424242;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-form__line {
+    display: flex;
+    position: relative;
+}
+
+.search-form__btn {
+    /*align-self: center;*/
+    color: wheat;
+    min-height: 34px;
+    min-width: 34px;
+    border-radius: 50%;
+    background-color: #4285F4;
+    border: none;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
+
+.search-form__input {
+    color: wheat;
+    background: #2F2F2F;
+    border-radius: 40px;
+    width: 100%;
+    min-height: 46px;
+    box-sizing: border-box;
+    border: 1px solid #000000;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Inter', sans-serif, serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 17px;
+    padding-left: 22px;
+}
+
+.search-form__options {
+    max-width: 174px;
+    margin-top: 40px;
+    align-self: center;
+    /*padding-bottom: 70px;*/
+    /*border-bottom: 1px solid #424242;*/
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.search-form__input-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+.search-form__pseudo_checkbox {
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    cursor: pointer;
+    background-image: url("../../images/checkbox/disable/checkbox_disable_state1.svg");
+}
+
+.search-form__input-hidden:hover + .search-form__pseudo_checkbox {
+    background-image: url("../../images/checkbox/disable/checkbox_disable_state2.svg");
+}
+
+.search-form__input-hidden:checked + .search-form__pseudo_checkbox {
+    background-image: url("../../images/checkbox/active/checkbox_active_state1.svg");
+}
+
+.search-form__input-hidden:checked:hover + .search-form__pseudo_checkbox {
+    background-image: url("../../images/checkbox/active/checkbox_active_state2.svg");
+}
+
+.search-form__text {
+    font-family: 'Inter', sans-serif, serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #FFFFFF;
+    margin-left: 12px;
+    text-align: center;
+}
+
+@media (max-width: 898px) {
+    /*.search-form {*/
+    /*    padding: 30px 0;*/
+    /*}*/
+    .search-form {
+        padding-bottom: 51px;
+        padding-top: 80px;
+    }
+}

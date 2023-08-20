@@ -1,14 +1,13 @@
 import './SavedMovies.css';
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import MoviesCard from "../MoviesCard/MoviesCard";
+import {moviesSave} from "../../utils/moviesSave";
 
 function SavedMovies() {
   return (
-    <div className="">
-        SavedMovies starts
-        <MoviesCardList/>
-        <MoviesCard/>
-        SavedMovies ends
+    <div className="saved-movies">
+        <MoviesCardList
+            // className={"saved-movies__list"}
+            movies={moviesSave}/>
     </div>
   );
 }

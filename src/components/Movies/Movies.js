@@ -1,18 +1,14 @@
 import './Movies.css';
 import SearchForm from "../SearchForm/SearchForm";
-import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import MoviesCard from "../MoviesCard/MoviesCard";
+import {movies} from '../../utils/movies';
 
 function Movies() {
     return (
-        <div className="">
-            Movies start
+        <div className="movies">
             <SearchForm/>
-            <Preloader/>
-            <MoviesCardList/>
-            <MoviesCard/>
-            Movies end
+            {/*<Preloader/>*/}
+            <MoviesCardList movies={movies}/>
         </div>
     );
 }

@@ -2,7 +2,21 @@
 @import url('./vendor/normalize.css');
 @import url('./vendor/fonts.css');
 
-/* Components */
+
+.page {
+    height: 100dvh;
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: #202020;
+}
+
+.page__content {
+
+}
+
+/*
+!* Components *!
+@import url('./components/App/App.css');
 @import url('./components/AboutMe/AboutMe.css');
 @import url('./components/AboutProject/AboutProject.css');
 @import url('./components/App/App.css');
@@ -23,3 +37,4 @@
 @import url('./components/SavedMovies/SavedMovies.css');
 @import url('./components/SearchForm/SearchForm.css');
 @import url('./components/Techs/Techs.css');
+*/
