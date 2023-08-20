@@ -1,5 +1,6 @@
 import './AboutMe.css';
 import defaultImg from '../../images/img.png'
+import {Link} from "react-router-dom";
 
 function AboutMe() {
     return (
@@ -18,7 +19,7 @@ function AboutMe() {
                         и ушёл с постоянной работы.</p>
                     <ul className={"about-me__links"}>
                         <li className={"about-me__line"}>
-                            <a className={"about-me__link"} href={"#"}>GitHub</a>
+                            <Link className={"about-me__link"} to={"https://github.com/Drogunov-S"}>GitHub</Link>
                         </li>
                     </ul>
                 </div>
