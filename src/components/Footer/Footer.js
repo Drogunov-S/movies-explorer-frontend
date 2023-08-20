@@ -1,4 +1,5 @@
 import './Footer.css';
+import {Link} from "react-router-dom";
 
 function Footer() {
     return (
@@ -8,10 +9,10 @@ function Footer() {
                 <p className="footer__copyright">&copy; {new Date().getFullYear()}</p>
                 <ul className={"footer__links"}>
                     <li className={"footer__link-line"}>
-                        <a className={"footer__link"} href={"#"}>Яндекс.Практикум</a>
+                        <Link className={"footer__link"} to={"https://practicum.yandex.ru/"}>Яндекс.Практикум</Link>
                     </li>
                     <li className={"footer__link-line"}>
-                        <a className={"footer__link"} href={"#"}>Github</a>
+                        <Link className={"footer__link"} to={"https://github.com/Drogunov-S"}>Github</Link>
                     </li>
                 </ul>
             </div>
