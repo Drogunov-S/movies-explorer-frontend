@@ -2,6 +2,7 @@ import './Login.css';
 import React, {useState} from 'react';
 import logo from "../../images/logos/logo.svg";
 import {Link} from "react-router-dom";
+import {mainApi} from "../../utils/mainApi";
 
 // import auth from "../utils/Auth";
 
@@ -25,16 +26,17 @@ function Login({title, buttonText, onLogin, onError}) {
         if (!(formValue.email || formValue.password)) {
             return;
         }
-        // auth.authorize(formValue.email, formValue.password)
-        //     .then(({token}) => {
-        //       onLogin(token);
-        //       setFormValue({email: '', password: ''});
-        //     })
-        //     .catch(err => {
-        //       err.then(({message}) => {
-        //         onError({message: message, isError: true});
-        //       })
-        //     })
+        mainApi.authorize(formValue)
+            .then(({token}) => {
+              onLogin(token);
+              setFormValue({email: '', password: ''});
+            })
+            .catch(err => {
+              err.then(({message}) => {
+                // onError({message: message, isError: true});
+                  console.log(message);
+              })
+            })
     }
 
 

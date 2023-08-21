@@ -7,44 +7,78 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Error from "../Error/Error";
-import {Navigate, Route, Routes, useLocation} from "react-router-dom";
+import {Navigate, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import Profile from "../Profile/Profile";
 import React, {useState} from "react";
 import {CurrentUserContext} from "../../context/CurrentUserContext";
+import ProtectedRouteElement from "../ProtectedRoute/ProtectedRouteElement";
+import {mainApi} from "../../utils/mainApi";
+import {defaultError, hiddenIn, defaultUser} from "../../config/config";
+import {isView} from "../../utils/utility";
 
 function App() {
+    const navigate = useNavigate();
+    const [currentUser, setCurrentUser] = useState(defaultUser)
+    const [error, setError] = useState(defaultError)
 
-    const [isLogin, setLoginState] = useState(false);
-    const [currentUser, setCurrentUser] = useState({
-        isAuth: false,
-        _id: '',
-        name: 'defaultName',
-        email: 'example@mail.ru',
-    })
 
-    // const isView = () => {
-    //
-    // }};
+    React.useEffect(() => {
+        handleDataUpdate();
+    }, []);
 
-    // const routesWithOutHeaderAndFooter = ['/sign-in', '/sign-up', '/error', '/profile'];
-
-    const handlerLoginState = (isLogin) => {
-        setLoginState(!isLogin)
+    function handleError(error) {
+        setError(error);
     }
 
-    const loc = useLocation().pathname;
-    // console.log(loc);
-    const sin = '/sign-in';
-    const siu = '/sign-up';
-    const pro = '/profile';
-    const isError = '/error' === loc;
-    // const isLogi = true;
-    const isLogi = (loc === siu || loc === sin);
-    console.log(isError);
+    function handleAuth(token) {
+        if (token) {
+            localStorage.setItem('jwt', `Bearer ${token}`);
+        }
+        handleDataUpdate();
+    }
+
+    function handleDataUpdate() {
+        if (localStorage.getItem('jwt')) {
+            Promise.all([mainApi.getAboutMe()])
+                .then(([userData]) => {
+                    setCurrentUser({...userData, isAuth: true});
+                    navigate('/', {replace: true});
+                })
+                .catch(console.log);
+        }
+    }
+
+    function handleUpdateProfile(newDataProfile) {
+        console.log(error);
+        mainApi.updateProfile(newDataProfile)
+            .then(dataProfile => {
+                setCurrentUser(dataProfile);
+                setError(defaultError);
+                navigate('/profile', {replace: true});
+            }).catch(error2 => {
+            error2.then((err) => {
+                console.log(error);
+                console.log('err');
+                console.log(err);
+                setError({isError: true, message: err.message, statusCode: err.statusCode});
+                console.log('after set error');
+                console.log(error);
+            });
+        })
+    }
+
+    function logout() {
+        console.log('logout');
+        localStorage.removeItem('jwt');
+        setCurrentUser(defaultUser);
+        navigate('/sign-in', {replace: true});
+    }
+
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="App">
-                {!isLogi && !isError && <Header isLogin={isLogin} handlerLoginState={handlerLoginState}/>}
+                {isView('header') && <Header/>}
                 <Routes>
                     <Route path='*' element={<Navigate to={'/error'}/>}/>
                     <Route path={'/'} element={<Main/>}/>
@@ -52,7 +86,7 @@ function App() {
                            element={<Login
                                title='Рады видеть!'
                                buttonText='Войти'
-                               onLogin={null}
+                               onLogin={handleAuth}
                                onError={null}
                            />}
                     />
@@ -60,27 +94,32 @@ function App() {
                            element={
                                <Register title='Добро пожаловать!'
                                          buttonText='Зарегистрироваться'
-                                         onLogin={null}
-                                         onError={null}
                                />
                            }/>
+
                     <Route path={'/movies'}
                            element={
-                               <Movies/>
+                               <ProtectedRouteElement
+                                   element={Movies}
+                               />
                            }
                     />
                     <Route path={'/saved-movies'}
                            element={
-                               <SavedMovies/>
+                               <ProtectedRouteElement
+                                   element={SavedMovies}
+                               />
+
                            }
                     />
                     <Route path={'/profile'}
                            element={
-                               <Profile
-                                   /* buttonText={'key'}
-                                    title={'Привет, Виталий!'}
-                                    onError={null}
-                                    onLogin={null}*/
+                               <ProtectedRouteElement
+                                   element={Profile}
+                                   error={error}
+                                   onError={handleError}
+                                   onUpdateProfile={handleUpdateProfile}
+                                   onLogout={logout}
                                />
                            }
                     />
@@ -89,7 +128,7 @@ function App() {
                                                            link={'/'}
                                                            refText={'Назад'}/>}/>
                 </Routes>
-                {!(isLogi || (loc === pro)) && !isError && <Footer/>}
+                {isView('footer') && <Footer/>}
 
                 {/*<Movies/>*/}
                 {/*<SavedMovies/>*/}

@@ -1,14 +1,17 @@
 import './Profile.css';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import {CurrentUserContext} from "../../context/CurrentUserContext";
 
-function Profile() {
+
+function Profile({error, onError, onUpdateProfile, onLogout}) {
+    const {_id, name, email} = useContext(CurrentUserContext);
     const [formValue, setFormValue] = useState(
-        {name: 'Виталий', email: 'pochta@yandex.ru'}
+        {name: name, email: email}
+        // {name: 'Виталий', email: 'pochta@yandex.ru'}
     );
-
     const [isFormEditable, setFormEditable] = useState(true);
 
-    const handleChange = (e) => {
+    function handleChange(e) {
         const {name, value} = e.target;
         setFormValue({
             ...formValue,
@@ -16,15 +19,21 @@ function Profile() {
         })
     }
 
-    const handleEditBnt = () => {
+    function handleEditBnt() {
         setFormEditable(!isFormEditable);
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        onUpdateProfile(formValue);
+        //     TODO редиректит на sign-in
     }
 
     return (
         <div className="profile">
-            <h2 className="profile__title">Привет, Виталий!</h2>
+            <h2 className="profile__title">Привет, {name}</h2>
             <form className="profile__form"
-                // onSubmit={handleSubmit}
+                  onSubmit={handleSubmit}
             >
                 <fieldset className={'profile__fieldset'}>
                     <label className={"profile__line"} htmlFor={"name"}>
@@ -63,9 +72,9 @@ function Profile() {
                     </label>
                 </fieldset>
                 <div className={"profile__actions"}>
-                    <span className="profile__error">
-                        При обновлении профиля произошла ошибка.
-                    </span>
+                    {error.isError && <span className="profile__error">
+                        {error.message}
+                    </span>}
                     <button className={`profile__save_bnt profile__bnt ${isFormEditable && 'profile__bnt_hidden'}`}>
                         Сохранить
                     </button>
@@ -75,7 +84,9 @@ function Profile() {
                     >Редактировать
                     </button>
                     <button className={`profile__logout-bnt  profile__bnt ${!isFormEditable && 'profile__bnt_hidden'}`}
-                            type="button">Выйти из аккаунта
+                            type="button"
+                            onClick={onLogout}
+                    >Выйти из аккаунта
                     </button>
                 </div>
             </form>
