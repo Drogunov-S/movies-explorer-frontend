@@ -1,0 +1,85 @@
+.movie-card {
+    max-width: 364px;
+    max-height:281px;
+}
+
+
+.movie-card__image {
+    width: 100%;
+    max-height: 203px;
+    background-repeat: no-repeat;
+}
+
+.movie__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.movie__wrapper {
+    max-width: 290px;
+}
+
+.movie__caption {
+    text-shadow: 1px 1px 1px black;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 900;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0;
+}
+
+.movie__timing {
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    color: #8B8B8B;
+}
+
+.movie__like {
+    background: transparent url('../../../images/like/like.svg') no-repeat center;
+    background-size: 30px 30px;
+    aspect-ratio: 1 / 1;
+    border: 0;
+    margin-left: auto;
+    cursor: pointer;
+    padding: 0 22px 19px 0;
+}
+
+.movie__like:hover {
+    opacity: .5;
+}
+
+.movie__remove {
+    background: transparent url('../../../images/close.svg') no-repeat center;
+    background-size: 11.5px 11.5px;
+    aspect-ratio: 1 / 1;
+    border: 0;
+    margin-left: auto;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.movie__like_active {
+    background-image: url('../../../images/like/like_active.svg');
+}
+
+@media (max-width: 812px) {
+    .movie-card {
+        max-width: 339px;
+        max-height:262px;
+    }
+}
+
+@media (max-width: 380px) {
+    .movie-card {
+        max-width: 300px;
+        max-height:237px;
+    }
+}

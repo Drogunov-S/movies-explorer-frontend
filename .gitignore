@@ -40,3 +40,4 @@ yarn-error.log*
 /src/components/App/App.test.js
 /src/reportWebVitals.js
 /src/setupTests.js
+/bugs.md
