@@ -38,11 +38,5 @@ yarn-error.log*
 .env
 /package-lock.json
 /src/components/App/App.test.js
-/public/favicon.ico
-/src/images/logos/logo.svg
-/public/logo192.png
-/public/logo512.png
-/public/manifest.json
 /src/reportWebVitals.js
-/public/robots.txt
 /src/setupTests.js
