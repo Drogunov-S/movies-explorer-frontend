@@ -13,7 +13,7 @@
 .data-form {
     display: flex;
     flex-direction: column;
-    min-width: 396px;
+    max-width: 396px;
 }
 
 /*@media screen and (min-width: 933px) {

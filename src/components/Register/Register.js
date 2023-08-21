@@ -1,13 +1,18 @@
 import './Register.css';
 import logo from "../../images/logos/logo.svg";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
+import {mainApi} from "../../utils/mainApi";
 
-function Register({title, buttonText, onLogin, onError}) {
+function Register({title, buttonText}) {
 
     const [formValue, setFormValue] = useState(
         {name: '', email: '', password: ''}
     );
+
+    const navigate = useNavigate();
+
+    const [error, setError] = useState({message: '', isError: false});
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -20,7 +25,24 @@ function Register({title, buttonText, onLogin, onError}) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-         }
+        if (!(formValue.email || formValue.password || formValue.name)) {
+            return;
+        }
+        mainApi.register(formValue).then(
+            data => {
+                setFormValue({name: '', email: '', password: ''});
+                // formValue.reset();
+                navigate('/sign-in', {replace: true});
+                console.log('Логин')
+                console.log(data)
+            })
+            .catch(err => {
+                err.then(({message}) => {
+                    setError({message: message, isError: true});
+                })
+            })
+
+    }
 
 
     return (
@@ -50,7 +72,6 @@ function Register({title, buttonText, onLogin, onError}) {
                         value={formValue.name}
                         onChange={handleChange}
                     />
-                    <span className="data-form__input-error data-form__input-error_type_name"></span>
                     <label className={"data-form__label"} htmlFor={"email"}>E-mail</label>
                     <input
                         className="data-form__input data-form__input_theme_dark"
@@ -65,7 +86,6 @@ function Register({title, buttonText, onLogin, onError}) {
                         value={formValue.email}
                         onChange={handleChange}
                     />
-                    <span className="data-form__input-error data-form__input-error_type_email"></span>
                     <label className={"data-form__label"} htmlFor={"password"}>Пароль</label>
                     <input
                         className="data-form__input data-form__input_type_text-position data-form__input_theme_dark"
@@ -80,7 +100,7 @@ function Register({title, buttonText, onLogin, onError}) {
                         value={formValue.password}
                         onChange={handleChange}
                     />
-                    <span className="data-form__input-error data-form__input-error_type_password"></span>
+                    {error.isError && <span className="data-form__input-error">{error.message}</span>}
                     <button className="data-form__btn-save data-form__btn-save_theme_dark"
                             type="submit">{buttonText}
                     </button>

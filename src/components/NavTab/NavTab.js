@@ -1,17 +1,19 @@
 import './NavTab.css';
 import account from './../../images/account.svg';
 import {NavLink} from "react-router-dom";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {CurrentUserContext} from "../../context/CurrentUserContext";
 
-function NavTab({isLogin}) {
+function NavTab() {
     const [isActiveMenu, setMenuActive] = useState(false);
+    const {isAuth} = useContext(CurrentUserContext);
     const handleActiveMenu = () => {
         setMenuActive(!isActiveMenu);
     }
 
     return (
         <nav className="navtab">
-            {isLogin ? (
+            {isAuth ? (
                 <>
                     <button className="navtab__link navtab__menu" onClick={handleActiveMenu}/>
                     <div className={`${isActiveMenu ? 'navtab__wrapper_active' : 'navtab__wrapper_disable'}`}
@@ -22,14 +24,14 @@ function NavTab({isLogin}) {
                                 <>
                                     <button className={'navtab__close-menu'} onClick={handleActiveMenu}/>
                                     <li className={'navtab__item'}>
-                                        <NavLink className={`navtab__link ${isLogin && 'navtab__link_login'}`} to="/">Главная</NavLink>
+                                        <NavLink className={`navtab__link ${isAuth && 'navtab__link_login'}`} to="/">Главная</NavLink>
                                     </li>
                                 </>)}
                             <li className={'navtab__item'}>
-                                <NavLink className={`navtab__link ${isLogin && 'navtab__link_login'}`} to="/movies">Фильмы</NavLink>
+                                <NavLink className={`navtab__link ${isAuth && 'navtab__link_login'}`} to="/movies">Фильмы</NavLink>
                             </li>
                             <li className={'navtab__item'}>
-                                <NavLink className={`navtab__link ${isLogin && 'navtab__link_login'}`} to="/saved-movies">Сохраненные фильмы</NavLink>
+                                <NavLink className={`navtab__link ${isAuth && 'navtab__link_login'}`} to="/saved-movies">Сохраненные фильмы</NavLink>
                             </li>
                             <li className={'navtab__item'}>
                                 <NavLink className={"navtab__link navtab__link_type_account"} to="/profile">
