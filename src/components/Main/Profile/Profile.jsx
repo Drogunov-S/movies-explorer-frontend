@@ -30,8 +30,8 @@ function Profile({error, onError, onUpdateProfile, onLogout}) {
 
     return (
         <Main>
-            <div className="profile">
-                <h2 className="profile__title">Привет, {name}</h2>
+            <section className="profile">
+                <h1 className="profile__title">Привет, {name}</h1>
                 <form className="profile__form"
                       onSubmit={handleSubmit}
                 >
@@ -44,7 +44,7 @@ function Profile({error, onError, onUpdateProfile, onLogout}) {
                                 name="name"
                                 type="text"
                                 aria-label="Имя"
-                                // placeholder="Пароль"
+                                placeholder="Имя"
                                 minLength="2"
                                 maxLength="200"
                                 required
@@ -60,8 +60,8 @@ function Profile({error, onError, onUpdateProfile, onLogout}) {
                                 id="email"
                                 name="email"
                                 type="email"
-                                aria-label="Email"
-                                // placeholder="Email"
+                                aria-label="E-mail"
+                                placeholder="E-mail"
                                 minLength="2"
                                 maxLength="40"
                                 required
@@ -91,7 +91,7 @@ function Profile({error, onError, onUpdateProfile, onLogout}) {
                         </button>
                     </div>
                 </form>
-            </div>
+            </section>
         </Main>
     )
 }

@@ -11,31 +11,13 @@
     font-family: 'Inter', 'Arial', sans-serif;
 }
 
-.page__content {
-
+.bnt {
+    background-color: transparent;
+    transition: 0.3s opacity ease-out;
+    border: none;
+    padding: 0;
 }
 
-/*
-!* Components *!
-@import url('./components/App/App.css');
-@import url('./components/AboutMe/AboutMe.css');
-@import url('./components/AboutProject/AboutProject.css');
-@import url('./components/App/App.css');
-@import url('./components/Footer/Footer.css');
-@import url('./components/Header/Header.css');
-@import url('./components/Login/Login.css');
-@import url('./components/Main/Main.css');
-@import url('./components/Movies/Movies.css');
-@import url('./components/MoviesCard/MoviesCard.css');
-@import url('./components/MoviesCardList/MoviesCardList.css');
-@import url('./components/Navigation/Navigation.css');
-@import url('./components/NavTab/NavTab.css');
-@import url('./components/Portfolio/Portfolio.css');
-@import url('./components/Preloader/Preloader.css');
-@import url('./components/Profile/Profile.css');
-@import url('./components/Promo/Promo.css');
-@import url('./components/Register/Register.css');
-@import url('./components/SavedMovies/SavedMovies.css');
-@import url('./components/SearchForm/SearchForm.css');
-@import url('./components/Techs/Techs.css');
-*/
+.bnt:hover {
+    opacity: .6;
+}

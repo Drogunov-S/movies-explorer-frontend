@@ -2,15 +2,18 @@ import './SavedMovies.css';
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import {moviesSave} from "../../../utils/moviesSave";
 import Main from "../Main";
+import SearchForm from "../SearchForm/SearchForm";
 
 function SavedMovies() {
     return (
         <Main>
-            <div className="saved-movies">
+            <section className="saved-movies">
+                <SearchForm className={'saved-movies__search-form'}/>
                 <MoviesCardList
-                    // className={"saved-movies__list"}
-                    movies={moviesSave}/>
-            </div>
+                    movies={moviesSave}
+                    className={"saved-movies__movie-card-list"}
+                />
+            </section>
         </Main>
     );
 }

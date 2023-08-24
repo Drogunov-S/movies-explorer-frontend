@@ -22,9 +22,10 @@ function App() {
     const [error, setError] = useState(defaultError)
 
 ////TODO на время верстки
-//     React.useEffect(() => {
+    React.useEffect(() => {
 //         handleDataUpdate();
-//     }, []);
+        setCurrentUser(defaultUser);
+    }, []);
 
     function handleError(error) {
         setError(error);
@@ -102,6 +103,7 @@ function App() {
                            element={
                                <Register title='Добро пожаловать!'
                                          buttonText='Зарегистрироваться'
+                                         classElement={'register'}
                                />
                            }/>
 
@@ -137,17 +139,6 @@ function App() {
                                                            refText={'Назад'}/>}/>
                 </Routes>
                 {isView('footer') && <Footer/>}
-
-                {/*<Movies/>*/}
-                {/*<SavedMovies/>*/}
-                {/*<Footer/>*/}
-                {/*
-
-            <Error code={'404'}
-                   message={'Страница не найдена'}
-                   link={'dsf'}
-                   refText={'Назад'}
-            />*/}
             </div>
         </CurrentUserContext.Provider>
     );

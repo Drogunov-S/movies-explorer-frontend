@@ -6,13 +6,14 @@
     align-items: center;
     justify-content: center;
     background-image: url("../../../../images/promo_title.svg");
-    background-size:  320px 320px;
+    background-size: 320px 320px;
     background-repeat: no-repeat;
     background-position: center;
     background-position-y: 82px;
 }
 
 .promo__title {
+    margin-bottom: 40px;
     font-family: 'Inter', sans-serif, serif;
     font-style: normal;
     font-weight: 400;
@@ -23,20 +24,30 @@
     color: #FFFFFF;
     max-width: 730px;
     margin-top: 0;
-    margin-bottom: 42px;
+}
+
+@media (max-width: 768px) {
+    .promo {
+        min-height: 784px;
+        background-position-y: center;
+    }
+
+    .promo__title {
+        margin-bottom: 15px;
+    }
 }
 
 @media (max-width: 500px) {
     .promo {
-        background-size:  248px 248px;
+        background-size: 248px 248px;
         background-position-y: 142px;
         min-height: 570px;
     }
 
-
     .promo__title {
         font-size: 31px;
         line-height: 39px;
+        margin-bottom: 39px;
     }
 }
 

@@ -93,7 +93,7 @@
 
 @media (max-width: 768px) {
     .about-me {
-        padding: 90px 50px 90px;
+        padding: 80px 50px 90px;
     }
 
     .about-me__name {
@@ -120,22 +120,19 @@
         max-height: 307px;
         margin-left: 52px;
         margin-right: 0;
-
     }
 }
 
-/**/
 
-/**/
 @media (max-width: 600px) {
     .about-me__title {
         font-size: 18px;
         line-height: 22px;
-        padding-bottom: 28px;
+        padding-bottom: 27px;
     }
 
     .about-me {
-        padding: 70px 14px 70px;
+        padding: 41px 14px 70px;
     }
 
     .about-me__info {

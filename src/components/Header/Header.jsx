@@ -1,17 +1,15 @@
 import './Header.css';
 import NavTab from "../NavTab/NavTab";
 import logo from './../../images/logos/logo.svg';
-import {Link, useLocation} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {getPageName} from "../../utils/utility";
 
 function Header() {
-    const pathname = useLocation().pathname;
-    const isLanding = pathname === '/';
-
 
     return (
-        <header className={`header ${isLanding && 'header_main'}`}>
-            <Link to={'/'} >
-                <img className="logo header__logo"
+        <header className={`header header_${getPageName()}`}>
+            <Link to={'/'} className={'bnt'} >
+                <img className={`header__logo header__logo_${getPageName()}`}
                      alt={"Логотип"}
                      src={logo}
                 />

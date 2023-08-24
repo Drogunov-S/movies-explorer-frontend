@@ -24,17 +24,17 @@ function NavTab() {
                                 <>
                                     <button className={'navtab__close-menu'} onClick={handleActiveMenu}/>
                                     <li className={'navtab__item'}>
-                                        <NavLink className={`navtab__link ${isAuth && 'navtab__link_login'}`} to="/">Главная</NavLink>
+                                        <NavLink className={`bnt navtab__link ${isAuth && 'navtab__link_login'}`} to="/">Главная</NavLink>
                                     </li>
                                 </>)}
                             <li className={'navtab__item'}>
-                                <NavLink className={`navtab__link ${isAuth && 'navtab__link_login'}`} to="/movies">Фильмы</NavLink>
+                                <NavLink className={`bnt navtab__link ${isAuth && 'navtab__link_login'}`} to="/movies">Фильмы</NavLink>
                             </li>
                             <li className={'navtab__item'}>
-                                <NavLink className={`navtab__link ${isAuth && 'navtab__link_login'}`} to="/saved-movies">Сохраненные фильмы</NavLink>
+                                <NavLink className={`bnt navtab__link ${isAuth && 'navtab__link_login'}`} to="/saved-movies">Сохраненные фильмы</NavLink>
                             </li>
                             <li className={'navtab__item'}>
-                                <NavLink className={"navtab__link navtab__link_type_account"} to="/profile">
+                                <NavLink className={"bnt navtab__link navtab__link_type_account"} to="/profile">
                                     Аккаунт<img className={"navtab__link__account-logo"} alt={'Аккаунт'} src={account}/>
                                 </NavLink>
                             </li>
@@ -43,9 +43,9 @@ function NavTab() {
                 </>
             ) : (
                 <>
-                    <NavLink reloadDocument className={"navtab__link navtab__link_type_landing"}
+                    <NavLink reloadDocument className={"bnt navtab__link navtab__link_type_landing"}
                              to="/sign-up">Регистрация</NavLink>
-                    <NavLink reloadDocument className={"navtab__link navtab__link_type_landing navtab__link_type_login"}
+                    <NavLink reloadDocument className={"bnt navtab__link navtab__link_type_landing navtab__link_type_login"}
                              to="/sign-in">Войти</NavLink>
                 </>)
             }

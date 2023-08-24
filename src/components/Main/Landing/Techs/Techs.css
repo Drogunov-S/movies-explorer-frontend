@@ -9,6 +9,8 @@
 }
 
 .techs__title {
+    padding-top: 102px;
+    padding-bottom: 22px;
     font-family: 'Inter', sans-serif, serif;
     font-style: normal;
     font-weight: 400;
@@ -17,8 +19,6 @@
     letter-spacing: -0.04em;
     color: #FFFFFF;
     text-align: left;
-    padding-bottom: 23px;
-    padding-top: 100px;
     border-bottom: 1px solid #DADADA;
     margin: 0 0 0 0;
 }
@@ -27,8 +27,7 @@
     list-style: none;
     padding: 0;
     gap: 26px 40px;
-    margin: 40px 0 0 0;
-
+    margin: 40px 1px 0 0;
 }
 
 .techs__subtitle {
@@ -98,6 +97,10 @@
         padding-left: 50px;
     }
 
+    .techs__title {
+        padding-top: 72px;
+    }
+
     .techs__about {
         margin-top: 30px;
     }
@@ -113,8 +116,8 @@
     }
 
     .techs__list {
-        margin-top: 84px;
         flex-wrap: wrap;
+        margin-top: 74px;
     }
 
     .techs__list-item {
@@ -163,6 +166,8 @@
     .techs__title {
         font-size: 18px;
         line-height: 22px;
+        padding-bottom: 27px;
+        padding-top: 32px;
     }
 
     .techs__subtitle {

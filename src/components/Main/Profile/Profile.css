@@ -61,10 +61,14 @@
     color: #FFFFFF;
     border: none;
     padding: 0;
-    /*border: 1px solid red;*/
     font-size: 11px;
     text-align: end;
     width: 80%;
+    transition: opacity .3s ease-out;
+}
+
+.profile__input:hover {
+    opacity: .7;
 }
 
 .profile__input_non-active {
@@ -101,6 +105,8 @@
 .profile__bnt_hidden {
     visibility: hidden;
     position: absolute;
+    top: -10px;
+    left: -10px;
 }
 
 .profile__save_bnt {

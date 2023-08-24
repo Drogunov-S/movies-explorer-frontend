@@ -1,6 +1,12 @@
 .movie-card {
     max-width: 364px;
     max-height:281px;
+    cursor: pointer;
+    transition: 0.3s opacity ease-out;
+}
+
+.movie-card:hover {
+    opacity: .7;
 }
 
 
@@ -13,22 +19,33 @@
 .movie__info {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    padding-top: 9px;
 }
 
 .movie__wrapper {
     max-width: 290px;
+    margin-left: 16px;
 }
 
 .movie__caption {
-    text-shadow: 1px 1px 1px black;
-    font-size: 13px;
-    line-height: 16px;
-    font-weight: 900;
+    /*text-shadow: 1px 1px 1px black;*/
+    /*font-size: 13px;*/
+    /*line-height: 16px;*/
+    /*font-weight: 900;*/
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    margin: 0;
+    margin-top: 2px;
+    /*margin: 0;*/
+    /*font-family: 'Inter';*/
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+    /*border: 1px solid #000000;*/
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .movie__timing {
@@ -40,6 +57,7 @@
     display: flex;
     align-items: center;
     color: #8B8B8B;
+    padding-top: 6px;
 }
 
 .movie__like {
@@ -50,6 +68,7 @@
     margin-left: auto;
     cursor: pointer;
     padding: 0 22px 19px 0;
+    margin-right: 20px;
 }
 
 .movie__like:hover {
@@ -63,7 +82,9 @@
     border: 0;
     margin-left: auto;
     cursor: pointer;
-    padding: 15px;
+    margin-right: 24px;
+    padding: 0 0 0 15px;
+    margin-top: 3px;
 }
 
 .movie__like_active {
@@ -75,11 +96,42 @@
         max-width: 339px;
         max-height:262px;
     }
+
+    .movie__wrapper {
+        margin-left: 15px;
+    }
+
+    .movie__remove {
+        margin-right: 22px;
+    }
 }
 
 @media (max-width: 380px) {
     .movie-card {
         max-width: 300px;
         max-height:237px;
+    }
+
+    .movie__wrapper {
+        margin-left: 14px;
+    }
+
+    .movie__caption {
+        font-size: 12px;
+        line-height: 15px;
+        /*padding-top: 8px;*/
+    }
+
+    .movie__like {
+        margin-right: 14px;
+    }
+
+    .movie__remove {
+        margin-right: 17px;
+    }
+
+    .movie__timing {
+        font-size: 10px;
+        line-height: 12px;
     }
 }

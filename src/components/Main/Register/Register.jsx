@@ -5,7 +5,7 @@ import React, {useState} from "react";
 import {mainApi} from "../../../utils/mainApi";
 import Main from "../Main";
 
-function Register({title, buttonText}) {
+function Register({title, buttonText, classElement}) {
 
     const [formValue, setFormValue] = useState(
         {name: '', email: '', password: ''}
@@ -48,7 +48,7 @@ function Register({title, buttonText}) {
 
     return (
         <Main>
-            <div className="container">
+            <section className="container">
                 <div className="data-form popup__item data-form_theme_dark">
                     <a href={'/'} className={"logo login__logo"}>
                         <img className=""
@@ -56,7 +56,7 @@ function Register({title, buttonText}) {
                              src={logo}
                         />
                     </a>
-                    <h2 className="data-form__title data-form__title_theme_dark">{title}</h2>
+                    <h1 className="data-form__title data-form__title_theme_dark">{title}</h1>
                     <form className="data-form__form"
                           onSubmit={handleSubmit}
                     >
@@ -67,7 +67,7 @@ function Register({title, buttonText}) {
                             name="name"
                             type="text"
                             aria-label="name"
-                            // placeholder="Email"
+                            placeholder="Имя"
                             minLength="2"
                             maxLength="40"
                             required
@@ -81,7 +81,7 @@ function Register({title, buttonText}) {
                             name="email"
                             type="email"
                             aria-label="Email"
-                            // placeholder="Email"
+                            placeholder="Email"
                             minLength="2"
                             maxLength="40"
                             required
@@ -95,7 +95,7 @@ function Register({title, buttonText}) {
                             name="password"
                             type="password"
                             aria-label="Пароль"
-                            // placeholder="Пароль"
+                            placeholder="Пароль"
                             minLength="2"
                             maxLength="200"
                             required
@@ -103,16 +103,16 @@ function Register({title, buttonText}) {
                             onChange={handleChange}
                         />
                         {error.isError && <span className="data-form__input-error">{error.message}</span>}
-                        <button className="data-form__btn-save data-form__btn-save_theme_dark"
+                        <button className={`data-form__btn-save data-form__btn-save_type_${classElement}`}
                                 type="submit">{buttonText}
                         </button>
                     </form>
-                    <div className="login__signup">
-                        <p className={"login__signup-text"}>Уже зарегистрированы?</p>
-                        <Link to="/sign-in" className="signin__link">Войти</Link>
+                    <div className="data-form__wrapper">
+                        <p className={"data-form__subtext"}>Уже зарегистрированы?</p>
+                        <Link to="/sign-in" className="bnt data-form__link">Войти</Link>
                     </div>
                 </div>
-            </div>
+            </section>
         </Main>
     );
 }

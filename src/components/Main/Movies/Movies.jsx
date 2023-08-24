@@ -7,11 +7,11 @@ import Main from "../Main";
 function Movies() {
     return (
         <Main>
-            <div className="movies">
-                <SearchForm/>
+            <section className="movies">
+                <SearchForm className={'movies__search-form'}/>
                 {/*<Preloader/>*/}
-                <MoviesCardList movies={movies}/>
-            </div>
+                <MoviesCardList movies={movies} className={'movies__card-list'}/>
+            </section>
         </Main>
     );
 }

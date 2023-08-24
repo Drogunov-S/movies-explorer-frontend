@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 function AboutMe() {
     return (
-        <div className="about-me" id={"aboutMe"}>
+        <section className="about-me" id={"aboutMe"}>
             <h2 className={"about-me__title"}>Студент</h2>
             <div className={"about-me__info"}>
                 <div className={"about-me__data"}>
@@ -19,13 +19,13 @@ function AboutMe() {
                         и ушёл с постоянной работы.</p>
                     <ul className={"about-me__links"}>
                         <li className={"about-me__line"}>
-                            <Link className={"about-me__link"} to={"https://github.com/Drogunov-S"}>GitHub</Link>
+                            <Link className={"bnt about-me__link"} to={"https://github.com/Drogunov-S"}>GitHub</Link>
                         </li>
                     </ul>
                 </div>
                 <img className={"about-me__photo"} alt={'Фотография автора'} src={defaultImg}/>
             </div>
-        </div>
+        </section>
     );
 }
 

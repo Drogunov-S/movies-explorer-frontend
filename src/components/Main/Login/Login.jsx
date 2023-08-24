@@ -48,10 +48,10 @@ function Login({title, buttonText, onLogin, onError}) {
 
     return (
         <Main>
-            <div className="container">
+            <section className="container">
                 <div className="data-form popup__item data-form_theme_dark">
                     <a href={'/'} className={"logo login__logo"}>
-                        <img className=""
+                        <img className="data-form__logo"
                              alt={"Логотип"}
                              src={logo}
                         />
@@ -67,14 +67,13 @@ function Login({title, buttonText, onLogin, onError}) {
                             name="email"
                             type="email"
                             aria-label="Email"
-                            // placeholder="Email"
+                            placeholder="E-mail"
                             minLength="2"
                             maxLength="40"
                             required
                             value={formValue.email}
                             onChange={handleChange}
                         />
-                        <span className="data-form__input-error data-form__input-error_type_email"></span>
                         <label className={"data-form__label"} htmlFor={"password"}>Пароль</label>
                         <input
                             className="data-form__input data-form__input_type_text-position data-form__input_theme_dark"
@@ -82,7 +81,7 @@ function Login({title, buttonText, onLogin, onError}) {
                             name="password"
                             type="password"
                             aria-label="Пароль"
-                            // placeholder="Пароль"
+                            placeholder="Пароль"
                             minLength="2"
                             maxLength="200"
                             required
@@ -94,12 +93,12 @@ function Login({title, buttonText, onLogin, onError}) {
                                 type="submit">{buttonText}
                         </button>
                     </form>
-                    <div className="login__signup">
-                        <p className={"login__signup-text"}>Ещё не зарегистрированы?</p>
-                        <Link to="/sign-up" className="signup__link">Регистрация</Link>
+                    <div className="data-form__wrapper">
+                        <p className={"data-form__subtext"}>Ещё не зарегистрированы?</p>
+                        <Link to="/sign-up" className="bnt data-form__link">Регистрация</Link>
                     </div>
                 </div>
-            </div>
+            </section>
         </Main>
     )
 }

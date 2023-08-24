@@ -3,7 +3,7 @@ import {useLocation} from "react-router-dom";
 
 // import
 
-function MoviesCard({key, movie}) {
+function MoviesCard({movie}) {
     const pathname = useLocation().pathname;
 
 
@@ -11,7 +11,7 @@ function MoviesCard({key, movie}) {
     // console.log(key);
     // console.log(movie);
     return (
-        <article className="movie-card" key={key}>
+        <article className="movie-card">
             <img className="movie-card__image" src={movie.link} alt={movie.name}
                 // onClick={onImagemovie-cardClick}
             />

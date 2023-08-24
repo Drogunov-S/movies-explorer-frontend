@@ -3,7 +3,7 @@
     color: white;
     padding-left: 70px;
     padding-right: 70px;
-    padding-bottom: 170px;
+    padding-bottom: 92px;
 }
 
 .portfolio__title {
@@ -75,7 +75,7 @@
     .portfolio {
         padding-left: 14px;
         padding-right: 14px;
-        padding-bottom: 70px;
+        padding-bottom: 67px;
     }
 
     .portfolio__title {
@@ -97,6 +97,7 @@
 @media (max-width: 320px) {
     .portfolio__list-item {
         min-height: 48px;
+        padding-top: 19px;
     }
 
     .portfolio__arrow {

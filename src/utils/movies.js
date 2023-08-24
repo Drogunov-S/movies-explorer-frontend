@@ -58,12 +58,12 @@ const movies = [
         name: 'По волнам: Искусство звука в кино',
         link: './../movies/12.png',
         timing: '1ч 47м'
-    }/*,
+    },
     {
         name: 'Соберись перед прыжком',
         link: './../movies/1.png',
         timing: '1ч 47м'
-    },
+    }/*,
     {
         name: 'Пи Джей Харви: A dog called money',
         link: './../movies/2.png',

@@ -20,11 +20,27 @@
     background-color: rgba(7, 48, 66, 1);
 }
 
+.header_movies {
+    margin-top: 17px;
+    padding-left: 66px;
+    padding-right: 74px;
+    padding-top: 0;
+}
+
+.header__logo_movies {
+    padding-top: 3px;
+}
+
 @media (max-width: 768px) {
     .header {
         padding-left: 30px;
         padding-right: 30px;
     }
+
+    .header_movies {
+        margin-top: 0;
+    }
+
 }
 
 @media (max-width: 440px) {

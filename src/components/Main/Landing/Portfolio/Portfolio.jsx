@@ -3,8 +3,8 @@ import arrow from "../../../../images/arrow.svg";
 
 function Portfolio() {
     return (
-        <div className="portfolio">
-            <h3 className={"portfolio__title"}>Портфолио</h3>
+        <section className="portfolio">
+            <h2 className={"portfolio__title"}>Портфолио</h2>
             <ul className={"portfolio__list"}>
                 <li className={"portfolio__list-item"}>
                     <p className={"portfolio__link-text"}>Статичный сайт</p>
@@ -19,7 +19,7 @@ function Portfolio() {
                     <img src={arrow} alt={"Стрелка"} className={"portfolio__arrow"}/>
                 </li>
             </ul>
-        </div>
+        </section>
     );
 }
 
