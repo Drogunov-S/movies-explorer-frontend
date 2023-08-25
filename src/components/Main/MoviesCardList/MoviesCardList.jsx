@@ -37,7 +37,7 @@ function MoviesCardList({movies, className}) {
                 })}
             </div>
             {movies.length > cardSizer.max && <div className={"movies-card-list__more"}>
-                <button type={"button"} className={"bnt movies-card-list__btn_type_add"}>Ещё</button>
+                <button type={"button"} className={"bnt movies-card-list__btn-add"}>Ещё</button>
                 {/*<div className={"movies-card-list_empty-space"}></div>*/}
             </div>}
         </div>

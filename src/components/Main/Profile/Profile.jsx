@@ -4,8 +4,8 @@ import {CurrentUserContext} from "../../../context/CurrentUserContext";
 import Main from "../Main";
 
 
-function Profile({error, onError, onUpdateProfile, onLogout}) {
-    const {_id, name, email} = useContext(CurrentUserContext);
+function Profile({error, /*onError,*/ onUpdateProfile, onLogout}) {
+    const {/*_id,*/ name, email} = useContext(CurrentUserContext);
     const [formValue, setFormValue] = useState(
         {name: name, email: email}
     );
@@ -30,8 +30,8 @@ function Profile({error, onError, onUpdateProfile, onLogout}) {
 
     return (
         <Main>
-            <section className="profile">
-                <h1 className="profile__title">Привет, {name}</h1>
+            <section className="profile" aria-label={'Профиль'}>
+                <h2 className="profile__title">Привет, {name}</h2>
                 <form className="profile__form"
                       onSubmit={handleSubmit}
                 >
@@ -75,7 +75,7 @@ function Profile({error, onError, onUpdateProfile, onLogout}) {
                         {error.isError && <span className="profile__error">
                         {error.message}
                     </span>}
-                        <button className={`profile__save_bnt profile__bnt ${isFormEditable && 'profile__bnt_hidden'}`}>
+                        <button className={`profile__bnt-save profile__bnt ${isFormEditable && 'profile__bnt_hidden'}`}>
                             Сохранить
                         </button>
                         <button className={`profile__edit-btn profile__bnt ${!isFormEditable && 'profile__bnt_hidden'}`}

@@ -19,7 +19,7 @@ function AboutMe() {
                         и ушёл с постоянной работы.</p>
                     <ul className={"about-me__links"}>
                         <li className={"about-me__line"}>
-                            <Link className={"bnt about-me__link"} to={"https://github.com/Drogunov-S"}>GitHub</Link>
+                            <Link target='_blank'  className={"bnt about-me__link"} to={"https://github.com/Drogunov-S"}>GitHub</Link>
                         </li>
                     </ul>
                 </div>

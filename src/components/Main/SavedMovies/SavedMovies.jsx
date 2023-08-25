@@ -7,7 +7,7 @@ import SearchForm from "../SearchForm/SearchForm";
 function SavedMovies() {
     return (
         <Main>
-            <section className="saved-movies">
+            <section className="saved-movies" aria-label={'Сохраненные фильсы'}>
                 <SearchForm className={'saved-movies__search-form'}/>
                 <MoviesCardList
                     movies={moviesSave}

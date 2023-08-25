@@ -2,12 +2,12 @@ import './Login.css';
 import React, {useState} from 'react';
 import logo from "../../../images/logos/logo.svg";
 import {Link} from "react-router-dom";
-import {mainApi} from "../../../utils/mainApi";
+// import {mainApi} from "../../../utils/mainApi";
 import Main from "../Main";
 
 // import auth from "../utils/Auth";
 
-function Login({title, buttonText, onLogin, onError}) {
+function Login({title, buttonText, onLogin/*, onError*/}) {
 
     const [formValue, setFormValue] = useState(
         {email: '', password: ''}
@@ -48,21 +48,21 @@ function Login({title, buttonText, onLogin, onError}) {
 
     return (
         <Main>
-            <section className="container">
-                <div className="data-form popup__item data-form_theme_dark">
-                    <a href={'/'} className={"logo login__logo"}>
-                        <img className="data-form__logo"
+            <section className="container" aria-label={'Вход'}>
+                <div className="data-form">
+                    <Link to={'/'} className={"bnt data-form__logo"}>
+                        <img className="data-form__logo-img"
                              alt={"Логотип"}
                              src={logo}
                         />
-                    </a>
-                    <h2 className="data-form__title data-form__title_theme_dark">{title}</h2>
+                    </Link>
+                    <h2 className="data-form__title">{title}</h2>
                     <form className="data-form__form"
                           onSubmit={handleSubmit}
                     >
                         <label className={"data-form__label"} htmlFor={"email"}>E-mail</label>
                         <input
-                            className="data-form__input data-form__input_type_text-fullname data-form__input_theme_dark"
+                            className="data-form__input data-form__input_theme_dark"
                             id="email"
                             name="email"
                             type="email"
@@ -76,7 +76,7 @@ function Login({title, buttonText, onLogin, onError}) {
                         />
                         <label className={"data-form__label"} htmlFor={"password"}>Пароль</label>
                         <input
-                            className="data-form__input data-form__input_type_text-position data-form__input_theme_dark"
+                            className="data-form__input data-form__input_theme_dark"
                             id="password"
                             name="password"
                             type="password"
@@ -88,8 +88,8 @@ function Login({title, buttonText, onLogin, onError}) {
                             value={formValue.password}
                             onChange={handleChange}
                         />
-                        <span className="data-form__input-error data-form__input-error_type_password"></span>
-                        <button className="data-form__btn-save data-form__btn-save_theme_dark"
+                        <span className="data-form__input-error"></span>
+                        <button className="data-form__btn-save"
                                 type="submit">{buttonText}
                         </button>
                     </form>

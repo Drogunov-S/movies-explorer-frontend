@@ -48,21 +48,21 @@ function Register({title, buttonText, classElement}) {
 
     return (
         <Main>
-            <section className="container">
-                <div className="data-form popup__item data-form_theme_dark">
-                    <a href={'/'} className={"logo login__logo"}>
-                        <img className=""
+            <section className="container" aria-label={'Регистрация'}>
+                <div className="data-form">
+                    <Link to={'/'} className={"bnt data-form__logo"}>
+                        <img className="data-form__logo-img"
                              alt={"Логотип"}
                              src={logo}
                         />
-                    </a>
-                    <h1 className="data-form__title data-form__title_theme_dark">{title}</h1>
+                    </Link>
+                    <h1 className="data-form__title">{title}</h1>
                     <form className="data-form__form"
                           onSubmit={handleSubmit}
                     >
                         <label className={"data-form__label"} htmlFor={"name"}>Имя</label>
                         <input
-                            className="data-form__input data-form__input_type_text-fullname data-form__input_theme_dark"
+                            className="data-form__input data-form__input_theme_dark"
                             id="name"
                             name="name"
                             type="text"
@@ -90,7 +90,7 @@ function Register({title, buttonText, classElement}) {
                         />
                         <label className={"data-form__label"} htmlFor={"password"}>Пароль</label>
                         <input
-                            className="data-form__input data-form__input_type_text-position data-form__input_theme_dark"
+                            className="data-form__input data-form__input_theme_dark"
                             id="password"
                             name="password"
                             type="password"
@@ -108,7 +108,7 @@ function Register({title, buttonText, classElement}) {
                         </button>
                     </form>
                     <div className="data-form__wrapper">
-                        <p className={"data-form__subtext"}>Уже зарегистрированы?</p>
+                        <p className={`data-form__subtext`}>Уже зарегистрированы?</p>
                         <Link to="/sign-in" className="bnt data-form__link">Войти</Link>
                     </div>
                 </div>

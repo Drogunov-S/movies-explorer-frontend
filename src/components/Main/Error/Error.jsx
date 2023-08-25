@@ -6,10 +6,8 @@ function Error({code, message, link, refText}) {
     return (
         <Main>
             <section className="error">
-                <div className={"error__container"}>
-                    <h1 className={"error__title"}>{code}</h1>
-                    <p className={"error__text"}>{message}</p>
-                </div>
+                <h1 className={"error__title"}>{code}</h1>
+                <p className={"error__text"}>{message}</p>
                 <Link to={link} reloadDocument className={'error__link'}>{refText}</Link>
             </section>
         </Main>

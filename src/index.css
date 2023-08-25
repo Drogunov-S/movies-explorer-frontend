@@ -13,7 +13,7 @@
 
 .bnt {
     background-color: transparent;
-    transition: 0.3s opacity ease-out;
+    transition:  opacity ease-out 0.3s;
     border: none;
     padding: 0;
 }

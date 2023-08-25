@@ -7,7 +7,7 @@ import Main from "../Main";
 function Movies() {
     return (
         <Main>
-            <section className="movies">
+            <section className="movies" aria-label={'Фильмы'}>
                 <SearchForm className={'movies__search-form'}/>
                 {/*<Preloader/>*/}
                 <MoviesCardList movies={movies} className={'movies__card-list'}/>

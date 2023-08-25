@@ -25,10 +25,8 @@
 }
 
 .portfolio__list-item {
-    align-items: baseline;
-    display: flex;
     min-height: 70px;
-    font-family: 'Inter', sans-serif, serif;
+    /*font-family: 'Inter', sans-serif, serif;*/
     font-style: normal;
     font-weight: 400;
     padding-top: 20px;
@@ -37,7 +35,14 @@
     letter-spacing: -0.04em;
     color: #FFFFFF;
     border-bottom: 1px solid #424242;
+}
+
+.portfolio__link {
+    align-items: baseline;
+    display: flex;
     justify-content: space-between;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .portfolio__list-item:last-of-type {

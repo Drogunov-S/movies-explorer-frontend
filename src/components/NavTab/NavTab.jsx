@@ -16,7 +16,7 @@ function NavTab() {
             {isAuth ? (
                 <>
                     <button className="navtab__link navtab__menu" onClick={handleActiveMenu}/>
-                    <div className={`${isActiveMenu ? 'navtab__wrapper_active' : 'navtab__wrapper_disable'}`}
+                    <div className={`navtab__wrapper ${isActiveMenu ? 'navtab__wrapper_active' : 'navtab__wrapper_disable'}`}
                     // onClick={handleActiveMenu}
                     >
                         <ul className={"navtab__list navtab__link_"}>

@@ -16,19 +16,19 @@
     background-repeat: no-repeat;
 }
 
-.movie__info {
+.movie-card__info {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     padding-top: 9px;
 }
 
-.movie__wrapper {
+.movie-card__wrapper {
     max-width: 290px;
     margin-left: 16px;
 }
 
-.movie__caption {
+.movie-card__caption {
     /*text-shadow: 1px 1px 1px black;*/
     /*font-size: 13px;*/
     /*line-height: 16px;*/
@@ -48,7 +48,7 @@
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.movie__timing {
+.movie-card__timing {
     font-family: 'Inter', serif;
     font-style: normal;
     font-weight: 400;
@@ -60,7 +60,7 @@
     padding-top: 6px;
 }
 
-.movie__like {
+.movie-card__like {
     background: transparent url('../../../images/like/like.svg') no-repeat center;
     background-size: 30px 30px;
     aspect-ratio: 1 / 1;
@@ -71,11 +71,11 @@
     margin-right: 20px;
 }
 
-.movie__like:hover {
+.movie-card__like:hover {
     opacity: .5;
 }
 
-.movie__remove {
+.movie-card__remove {
     background: transparent url('../../../images/close.svg') no-repeat center;
     background-size: 11.5px 11.5px;
     aspect-ratio: 1 / 1;
@@ -87,7 +87,7 @@
     margin-top: 3px;
 }
 
-.movie__like_active {
+.movie-card__like_active {
     background-image: url('../../../images/like/like_active.svg');
 }
 
@@ -97,11 +97,11 @@
         max-height:262px;
     }
 
-    .movie__wrapper {
+    .movie-card__wrapper {
         margin-left: 15px;
     }
 
-    .movie__remove {
+    .movie-card__remove {
         margin-right: 22px;
     }
 }
@@ -112,25 +112,25 @@
         max-height:237px;
     }
 
-    .movie__wrapper {
+    .movie-card__wrapper {
         margin-left: 14px;
     }
 
-    .movie__caption {
+    .movie-card__caption {
         font-size: 12px;
         line-height: 15px;
         /*padding-top: 8px;*/
     }
 
-    .movie__like {
+    .movie-card__like {
         margin-right: 14px;
     }
 
-    .movie__remove {
+    .movie-card__remove {
         margin-right: 17px;
     }
 
-    .movie__timing {
+    .movie-card__timing {
         font-size: 10px;
         line-height: 12px;
     }

@@ -10,8 +10,8 @@ function SearchForm({className}) {
                 <button type="button" className={"bnt search-form__btn"}>></button>
             </label>
             <label className={"search-form__options"}>
-                <input type="checkbox" className={"search-form__input-hidden"}/>
-                <span className={"search-form__pseudo_checkbox"} />
+                <input type="checkbox" className={" search-form__input-hidden"}/>
+                <span className={"search-form__pseudo-checkbox"} />
                 <span className={"search-form__text"}>Короткометражки</span>
             </label>
         </search>
