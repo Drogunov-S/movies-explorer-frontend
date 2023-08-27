@@ -1,0 +1,23 @@
+/* vendor */
+@import url('./vendor/normalize.css');
+@import url('./vendor/fonts.css');
+
+
+.page {
+    height: 100dvh;
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: #202020;
+    font-family: 'Inter', 'Arial', sans-serif;
+}
+
+.bnt {
+    background-color: transparent;
+    transition:  opacity ease-out 0.3s;
+    border: none;
+    padding: 0;
+}
+
+.bnt:hover {
+    opacity: .6;
+}

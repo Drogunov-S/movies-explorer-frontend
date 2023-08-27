@@ -1,0 +1,14 @@
+.App {
+    text-align: center;
+    background-color: #202020;
+    color: #FFFFFF;
+    /*max-width: 1280px;*/
+    /*padding-left: 70px;*/
+    /*padding-right: 70px;*/
+    /*display: flex;*/
+    flex-direction: column;
+    /*height: 100vh;*/
+}
+
+
+
