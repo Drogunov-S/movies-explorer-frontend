@@ -13,8 +13,8 @@ let defaultUser = {
 const defaultError = {isError: false, message: ''}
 
 const mainApiConfig = {
-    baseUrl: 'http://localhost:3005',
-    // baseUrl: 'https://api.movie-drogunov.nomoredomains.xyz',
+    // baseUrl: 'http://localhost:3005',
+    baseUrl: 'https://api.movie-drogunov.nomoredomains.xyz',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
