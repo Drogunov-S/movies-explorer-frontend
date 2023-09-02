@@ -3,6 +3,7 @@
     width: 100%;
     margin-left: 44px;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .navtab__link.active {
