@@ -10,10 +10,7 @@ let defaultUser = {
     email: 'pochta@yandex.ru',
 }
 
-let defaultError = {isError: true, statusCode: -1, message: 'Произошла ошибка.'}
-
-
-
+const defaultError = {isError: false, message: ''}
 
 const mainApiConfig = {
     baseUrl: 'http://localhost:3005',

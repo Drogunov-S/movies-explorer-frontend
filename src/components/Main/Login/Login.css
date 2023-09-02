@@ -8,17 +8,17 @@
     box-sizing: border-box;
 }
 
-.data-form {
+.login {
     display: flex;
     flex-direction: column;
     max-width: 396px;
 }
 
-.data-form__logo {
+.login__logo {
     margin-bottom: 0;
 }
 
-.data-form__title {
+.login__title {
     text-align: left;
     width: 100%;
     font-style: normal;
@@ -31,7 +31,7 @@
 }
 
 
-.data-form__label {
+.login__label {
     font-family: 'Inter', sans-serif, serif;
     font-style: normal;
     font-weight: 400;
@@ -40,10 +40,9 @@
     color: #8B8B8B;
     float: left;
     margin-bottom: 10px;
-    margin-top: 20px;
 }
 
-.data-form__input {
+.login__input {
     box-sizing: border-box;
     width: 100%;
     border: none;
@@ -58,13 +57,14 @@
     padding: 0 0 0 15px;
 }
 
-.data-form__input_theme_dark {
+.login__input_theme_dark {
     background: #2F2F2F;
     color: white;
 }
 
-.data-form__input-error {
+.login__error {
     display: block;
+    text-align: left;
     min-height: 35px;
     box-sizing: border-box;
     padding-top: 5px;
@@ -72,11 +72,10 @@
     font-size: 12px;
     line-height: 15px;
     color: #FF0000;
-    opacity: 0;
     transition: opacity .3s;
 }
 
-.data-form__btn-save {
+.login__btn-save {
     color: #FFFFFF;
     background-color: #4285F4;
     width: 100%;
@@ -89,22 +88,19 @@
     padding: 14px 0;
 }
 
-.data-form__btn-save:hover {
-    opacity: .8;
-}
 
-.data-form__logo {
+.login__logo {
     max-width: 38px;
 }
 
-.data-form__wrapper {
+.login__wrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.data-form__subtext {
+.login__subtext {
     font-family: 'Inter', sans-serif, serif;
     font-style: normal;
     font-weight: 400;
@@ -116,7 +112,7 @@
     margin-top: 16px;
 }
 
-.data-form__link {
+.login__link {
     text-decoration: none;
     font-family: 'Inter', sans-serif, serif;
     font-style: normal;
@@ -133,22 +129,19 @@
         display: block;
     }
 
-    .data-form {
+    .login {
         justify-content: center;
         align-items: center;
         display: block;
     }
-    .data-form__form {
-        margin-top: 60px;
-    }
 
-    .data-form__title {
+    .login__title {
         text-align: center;
         margin-top: 46px;
         margin-bottom: 0;
     }
 
-    .data-form__btn-save {
+    .login__btn-save {
         font-size: 12px;
         line-height: 15px;
         margin-top: 232px;
@@ -156,12 +149,12 @@
         padding-bottom: 15px;
     }
 
-    .data-form__subtext {
+    .login__subtext {
         font-size: 12px;
         line-height: 15px;
     }
 
-    .data-form__link {
+    .login__link {
         font-size: 12px;
         line-height: 15px;
     }

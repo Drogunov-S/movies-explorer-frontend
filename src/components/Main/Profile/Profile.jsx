@@ -2,19 +2,27 @@ import './Profile.css';
 import React, {useContext, useState} from 'react';
 import {CurrentUserContext} from "../../../context/CurrentUserContext";
 import Main from "../Main";
+import {useValidate} from "../../../hooks/useValidate";
+import Form from "../Form/Form";
 
 
-function Profile({error, /*onError,*/ onUpdateProfile, onLogout}) {
-    const {/*_id,*/ name, email} = useContext(CurrentUserContext);
+function Profile({error, onUpdateProfile, onLogout, className}) {
+    const {name, email} = useContext(CurrentUserContext);
     const [formValue, setFormValue] = useState(
         {name: name, email: email}
     );
+
+    // const forms = useRef();
     const [isFormEditable, setFormEditable] = useState(true);
+    // debugger
+    const {handleValidation, errors, isFormValid} = useValidate('profile', []);
+
     function handleChange(e) {
-        const {name, value} = e.target;
+        const input = e.target;
+        handleValidation(e, className);
         setFormValue({
             ...formValue,
-            [name]: value
+            [input.name]: input.value
         })
     }
 
@@ -22,19 +30,18 @@ function Profile({error, /*onError,*/ onUpdateProfile, onLogout}) {
         setFormEditable(!isFormEditable);
     }
 
-    function handleSubmit(event) {
-        event.preventDefault();
+    function handleSubmit(e) {
+        e.preventDefault();
         onUpdateProfile(formValue);
-        //     TODO редиректит на sign-in
     }
 
     return (
         <Main>
-            <section className="profile" aria-label={'Профиль'}>
+
+            <section className={className} aria-label={'Профиль'}>
                 <h2 className="profile__title">Привет, {name}</h2>
-                <form className="profile__form"
-                      onSubmit={handleSubmit}
-                >
+                <Form className={'profile'} onSubmit={handleSubmit} error={error} isEditable={isFormEditable}
+                      isValidForm={isFormValid} bntSaveName={'Сохранить'}>
                     <fieldset className={'profile__fieldset'}>
                         <label className={"profile__line"} htmlFor={"name"}>
                             <span className={'profile__label'}>Имя</span>
@@ -53,6 +60,7 @@ function Profile({error, /*onError,*/ onUpdateProfile, onLogout}) {
                                 onChange={handleChange}
                             />
                         </label>
+                        <span className={'profile__error'}>{errors['name']}</span>
                         <label className={"profile__line"} htmlFor={"email"}>
                             <span className={'profile__label profile__label_type_end'}>E-mail</span>
                             <input
@@ -70,14 +78,9 @@ function Profile({error, /*onError,*/ onUpdateProfile, onLogout}) {
                                 onChange={handleChange}
                             />
                         </label>
+                        <span className={'profile__error'}>{errors['email']}</span>
                     </fieldset>
                     <div className={"profile__actions"}>
-                        {error.isError && <span className="profile__error">
-                        {error.message}
-                    </span>}
-                        <button className={`profile__bnt-save profile__bnt ${isFormEditable && 'profile__bnt_hidden'}`}>
-                            Сохранить
-                        </button>
                         <button className={`profile__edit-btn profile__bnt ${!isFormEditable && 'profile__bnt_hidden'}`}
                                 type="button"
                                 onClick={handleEditBnt}
@@ -90,8 +93,9 @@ function Profile({error, /*onError,*/ onUpdateProfile, onLogout}) {
                         >Выйти из аккаунта
                         </button>
                     </div>
-                </form>
+                </Form>
             </section>
+
         </Main>
     )
 }

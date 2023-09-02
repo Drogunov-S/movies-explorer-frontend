@@ -1,7 +1,6 @@
 .navtab {
     display: flex;
     width: 100%;
-    justify-content: end;
     margin-left: 44px;
     align-items: center;
 }
@@ -17,20 +16,16 @@
 .navtab__wrapper_disable {
     width: 100%;
 }
+
 .navtab__link {
     color: #FFFFFF;
     text-decoration: none;
     margin-right: 16px;
-    /*margin-right: 30px;*/
     font-size: 13px;
     line-height: 18px;
     max-height: 16px;
-    /*font-size: 12px;*/
-    /*line-height: 16px;*/
-    font-family: 'Inter', sans-serif, serif;
     font-style: normal;
     font-weight: 500;
-    /*text-align: right;*/
 }
 
 .navtab__list {
@@ -50,9 +45,6 @@
     visibility: hidden;
 }
 
-/*.navtab__link:last-of-type {*/
-/*    margin-right: 3px;*/
-/*}*/
 
 .navtab__out-login {
     display: flex;
@@ -109,14 +101,12 @@
     aspect-ratio: 1/1;
     height: 44px;
     max-height: 100%;
-    /*margin-right: 0;*/
     padding: 0;
     margin: 0;
     cursor: pointer;
 }
 
 @media (max-width: 768px) {
-
 
     .navtab__link {
         font-style: normal;
@@ -125,6 +115,7 @@
         line-height: 16px;
 
     }
+
     .navtab__link_login {
         font-size: 18px;
         line-height: 22px;
@@ -155,7 +146,7 @@
 
     .navtab__list {
         background-color: #202020;
-        height: 100%; /*100vh*/
+        height: 100%;
         position: fixed;
         top: 0;
         right: 0;
@@ -209,6 +200,7 @@
     .navtab__item:first-of-type {
         margin-top: 145px;
     }
+
     .navtab__item:last-of-type {
         margin-bottom: 53px;
         margin-right: 0;
@@ -225,7 +217,6 @@
     }
 
     .navtab__link__account-logo {
-        /*width: 100px*/
         margin-right: 0;
         padding-left: 7px;
     }

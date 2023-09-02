@@ -17,7 +17,6 @@ function NavTab() {
                 <>
                     <button className="navtab__link navtab__menu" onClick={handleActiveMenu}/>
                     <div className={`navtab__wrapper ${isActiveMenu ? 'navtab__wrapper_active' : 'navtab__wrapper_disable'}`}
-                    // onClick={handleActiveMenu}
                     >
                         <ul className={"navtab__list navtab__link_"}>
                             {isActiveMenu && (
@@ -43,9 +42,9 @@ function NavTab() {
                 </>
             ) : (
                 <>
-                    <NavLink reloadDocument className={"bnt navtab__link navtab__link_type_landing"}
+                    <NavLink className={"bnt navtab__link navtab__link_type_landing"}
                              to="/sign-up">Регистрация</NavLink>
-                    <NavLink reloadDocument className={"bnt navtab__link navtab__link_type_landing navtab__link_type_login"}
+                    <NavLink className={"bnt navtab__link navtab__link_type_landing navtab__link_type_login"}
                              to="/sign-in">Войти</NavLink>
                 </>)
             }
