@@ -1,19 +1,24 @@
 import './Login.css';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import logo from "../../../images/logos/logo.svg";
 import {Link} from "react-router-dom";
 import Main from "../Main";
 import {useValidate} from "../../../hooks/useValidate";
 import Form from "../Form/Form";
-import {FORM_LOGIN} from "../../../config/constant";
+import {FORMS, ROUTES} from "../../../config/constant";
 
-function Login({title, onLogin, error}) {
+function Login(
+    {
+        title
+        , onLogin
+        , error
+    }) {
 
     const {
         handleValidation,
         errors,
         isFormValid,
-    } = useValidate(FORM_LOGIN.name, FORM_LOGIN.requiredField);
+    } = useValidate(FORMS.login.name, FORMS.login.requiredField);
     const [formValue, setFormValue] = useState(
         {email: '', password: ''}
     );
@@ -30,7 +35,6 @@ function Login({title, onLogin, error}) {
     function handleSubmit() {
         onLogin(formValue);
     }
-
 
     return (
         <Main>
@@ -83,7 +87,7 @@ function Login({title, onLogin, error}) {
                     </Form>
                     <div className="login__wrapper">
                         <p className={"login__subtext"}>Ещё не зарегистрированы?</p>
-                        <Link to="/sign-up" className="bnt login__link">Регистрация</Link>
+                        <Link to={ROUTES.signup} className="bnt login__link">Регистрация</Link>
                     </div>
                 </div>
             </section>

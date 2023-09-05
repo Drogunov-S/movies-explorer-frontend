@@ -1,4 +1,4 @@
 import React from 'react';
-import {defaultError} from "../config/config";
+import {DEFAULT_OBJECTS} from "../config/constant";
 
-export const ErrorContext = React.createContext(defaultError);
+export const ErrorContext = React.createContext(DEFAULT_OBJECTS.error);

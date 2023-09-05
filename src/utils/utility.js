@@ -1,8 +1,8 @@
-import {hiddenIn} from "../config/config";
+import {DEFAULT_OBJECTS} from "../config/constant";
 
 function isView(nameElement) {
     let pathname = window.location.pathname;
-    return !hiddenIn[nameElement].some((element) => element === pathname)
+    return !DEFAULT_OBJECTS.hiddenIn[nameElement].some((element) => element === pathname)
 }
 
 function getPageName() {
@@ -51,4 +51,13 @@ function isName(string) {
     return regex.test(string);
 }
 
-export {isView, isName, getPageName, getMoviesCardSizer, getStringTime, saveToken, getFilteredMovies, isEmail};
+export {
+    isView
+    , isName
+    , getPageName
+    , getMoviesCardSizer
+    , getStringTime
+    , saveToken
+    , getFilteredMovies
+    , isEmail
+};

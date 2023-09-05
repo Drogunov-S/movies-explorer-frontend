@@ -13,7 +13,7 @@
 
 .bnt {
     background-color: transparent;
-    transition:  opacity ease-out 0.3s;
+    transition: opacity ease-out 0.3s;
     border: none;
     padding: 0;
     cursor: pointer;

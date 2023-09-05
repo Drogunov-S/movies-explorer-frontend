@@ -1,6 +1,13 @@
 import './SearchForm.css';
 
-function SearchForm({className, onSearch, query, setQuery, cookieKey, onCheckbox}) {
+function SearchForm({
+                        className
+                        , onSearch
+                        , query
+                        , setQuery
+                        , cookieKey
+                        , onCheckbox
+                    }) {
     function handleChange(e) {
         const {name, value} = e.target;
         setQuery({

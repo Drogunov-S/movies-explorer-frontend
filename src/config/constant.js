@@ -1,18 +1,104 @@
-export const ERROR_ANOTHER = 'Возникла непредвиденная ошибка';
-export const KEY_STORE_JWT = 'jwt';
-export const KEY_STORE_QUERY_SAVED_MOVIES = 'stateSearchSavedMovies';
-export const KEY_STORE_QUERY_MOVIES = 'stateSearchMovies';
-export const ELEMENT_NAME_HEADER = 'header';
-export const ELEMENT_NAME_FOOTER = 'footer';
-export const ELEMENT_NAME_ABOUT_PROJECT = 'aboutProject';
-export const ELEMENT_NAME_TECHS = 'techs';
-export const ELEMENT_NAME_ABOUT_ME = 'aboutMe';
-export const FORM_LOGIN = {name: 'login', requiredField: [{name: 'email'}, {name: 'password'}]};
-export const FORM_PROFILE = {name: 'profile', requiredField: []};
-export const MESS_ENTER_QUERY = 'Введите запрос для поиска';
-export const MESS_NOT_SAVE_MOVIE = 'Нет сохраненных фильмов';
-export const MESS_ERR_NOT_ENTER_QUERY = 'Необходимо ввести запрос';
-export const MESS_ERR_NOT_FOUND = 'Ничего не найдено';
-export const MESS_ERR_VALID_EMAIL = 'Неверный email';
-export const MESS_ERR_VALID_NAME = 'Введите корректное имя.';
-export const MESS_ERR_VALID_EQUALS_DATA = 'Поле должно отличатся от старого';
+export const KEY_STORE = {
+        jwt: 'jwt'
+        , querySavedMovies: 'stateSearchSavedMovies'
+        , queryMovies: 'stateSearchMovies'
+    }
+;
+
+export const ELEMENTS_NAME = {
+    header: 'header'
+    , footer: 'footer'
+    , aboutProject: 'aboutProject'
+    , techs: 'techs'
+    , aboutMe: 'aboutMe'
+    , profile: 'profile'
+};
+
+export const LINKS = {
+    practicum: 'https://practicum.yandex.ru/'
+    , gitHub: 'https://github.com/Drogunov-S'
+    , portfolio: {
+        staticSite: 'https://drogunov-s.github.io/how-to-learn_public/'
+        , adaptiveSite: 'https://drogunov-s.github.io/russian-travel-public/'
+        , srp: 'https://drogunov-s.github.io/react-mesto-auth-public/'
+    }
+};
+
+export const FORMS = {
+    login: {name: 'login', requiredField: [{name: 'email'}, {name: 'password'}]}
+    , profile: {name: 'profile', requiredField: []}
+    , register: {name: 'register', requiredField: [{name: 'name'}, {name: 'email'}, {name: 'password'}]}
+};
+
+export const MESSAGES = {
+    messEnterQuery: 'Введите запрос для поиска'
+    , messNotSaveMovie: 'Нет сохраненных фильмов'
+    , errAnother: 'Возникла непредвиденная ошибка'
+    , errNotEnterQuery: 'Необходимо ввести запрос'
+    , errNotFound: 'Ничего не найдено'
+    , errValidEmail: 'Неверный email'
+    , errValidName: 'Введите корректное имя.'
+    , errValidEqualsData: 'Поле должно отличатся от старого'
+
+};
+
+export const ROUTES = {
+        all: '*'
+        , main: '/'
+        , signin: '/sign-in'
+        , signup: '/sign-up'
+        , movies: '/movies'
+        , savedMovies: '/saved-movies'
+        , profile: '/profile'
+        , error: '/error'
+    }
+;
+
+export const DEFAULT_OBJECTS = {
+    hiddenIn: {
+        header: ['/sign-in', '/sign-up', '/error']
+        , footer: ['/sign-in', '/sign-up', '/error', '/profile']
+    },
+    user: {
+        isAuth: false
+        , _id: ''
+        , name: 'Виталий'
+        , email: 'pochta@yandex.ru',
+    },
+    error: {
+        isError: false
+        , message: ''
+    },
+    query: {
+        query: ''
+        , isShortFilms: false
+    }
+}
+
+export const API_CONFIGS = {
+    main_api: {
+        // baseUrl: 'http://localhost:3005',
+        baseUrl: 'https://api.movie-drogunov.nomoredomains.xyz',
+        headers: {
+            'Accept': 'application/json'
+            , 'Content-Type': 'application/json'
+        }
+    }
+    , movies_api: {
+        baseUrl: 'https://api.nomoreparties.co',
+        headers: {
+            'Accept': 'application/json'
+            , 'Content-Type': 'application/json'
+        }
+    }
+}
+
+export const PRELOADER_STATES = {
+    off: 0
+    , on: 1
+    , message: 2
+}
+
+export const TIME_OUTS = {
+    showAccess: 1500,
+}

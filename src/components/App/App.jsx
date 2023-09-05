@@ -6,72 +6,64 @@ import SavedMovies from "../Main/SavedMovies/SavedMovies";
 import Login from "../Main/Login/Login";
 import Register from "../Main/Register/Register";
 import Error from "../Main/Error/Error";
-import {Navigate, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import Profile from "../Main/Profile/Profile";
-import React, {useEffect, useState} from "react";
 import {CurrentUserContext} from "../../context/CurrentUserContext";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRouteElement";
 import {mainApi} from "../../utils/mainApi";
-import {defaultError, defaultUser, moviesApiConfig} from "../../config/config";
-import {isView, saveToken} from "../../utils/utility";
 import Landing from "../Main/Landing/Landing";
 import {moviesApi} from "../../utils/moviesApi";
 import {ErrorContext} from "../../context/ErrorContext";
 import Preloader from "../Main/Preloader/Preloader";
+import {useEffect, useState} from "react";
+import {isView, saveToken} from "../../utils/utility";
+import {Navigate, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import {
-    ELEMENT_NAME_FOOTER,
-    ELEMENT_NAME_HEADER,
-    ERROR_ANOTHER,
-    KEY_STORE_JWT,
-    KEY_STORE_QUERY_MOVIES,
-    KEY_STORE_QUERY_SAVED_MOVIES
+    API_CONFIGS,
+    DEFAULT_OBJECTS,
+    ELEMENTS_NAME,
+    KEY_STORE,
+    MESSAGES,
+    PRELOADER_STATES,
+    ROUTES,
+    TIME_OUTS
 } from "../../config/constant";
-import {
-    ROUTE_ALL,
-    ROUTE_ERROR,
-    ROUTE_MAIN,
-    ROUTE_MOVIES,
-    ROUTE_PROFILE,
-    ROUTE_SAVED_MOVIES,
-    ROUTE_SIGNIN,
-    ROUTE_SIGNUP
-} from "../../config/routes";
+
 
 function App() {
     const navigate = useNavigate();
     const {pathname} = useLocation();
-    const [currentUser, setCurrentUser] = useState(defaultUser)
-    const [error, setError] = useState(defaultError)
+    const [currentUser, setCurrentUser] = useState(DEFAULT_OBJECTS.user)
+    const [error, setError] = useState(DEFAULT_OBJECTS.error)
     const [movies, setMovies] = useState([])
     const [savedMovies, setSavedMovies] = useState([]);
-    const [isLoadingPopup, setLoaderState] = useState(1);
+    const [isLoadingPopup, setLoaderState] = useState(PRELOADER_STATES.on);
 
 
     /**
      * Хук для загрузки данных при наличии JWT в LocalStorage
      * */
     useEffect(() => {
-        if (localStorage.getItem(KEY_STORE_JWT)) {
+        if (localStorage.getItem(KEY_STORE.jwt)) {
             authorization()
                 .then(() => {
                 })
                 .catch(() => {
-                    setCurrentUser(defaultUser);
+                    setCurrentUser(DEFAULT_OBJECTS.user);
                 });
         } else {
-            setLoaderState(0);
+            setLoaderState(PRELOADER_STATES.off);
         }
     }, []);
 
     useEffect(() => {
-        setError(defaultError);
+        setError(DEFAULT_OBJECTS.error);
     }, [pathname]);
 
     /**
      * Функция регистрации нового пользователя
      * */
     function handlerRegister(userData) {
-        setLoaderState(1);
+        setLoaderState(PRELOADER_STATES.on);
         mainApi.register(userData)
             .then(createdUser => {
                 handlerLogin({email: userData.email, password: userData.password});
@@ -82,11 +74,11 @@ function App() {
                         handleError({message: message, isError: true})
                     })
                 } else {
-                    handleError({message: ERROR_ANOTHER, isError: true})
+                    handleError({message: MESSAGES.errAnother, isError: true})
                 }
             })
             .finally(() => {
-                setLoaderState(0);
+                setLoaderState(PRELOADER_STATES.off);
             });
     }
 
@@ -94,22 +86,22 @@ function App() {
      * Функция для входа в систему
      * */
     function handlerLogin(credentials) {
-        setLoaderState(1);
+        setLoaderState(PRELOADER_STATES.on);
         mainApi.authentication(credentials)
             .then(({token}) => {
-                saveToken(KEY_STORE_JWT, token);
+                saveToken(KEY_STORE.jwt, token);
                 authorization()
                     .then(() => {
-                        navigate('/movies', {replace: true});
+                        navigate(ROUTES.movies, {replace: true});
                     }).catch(() => {
-                    setCurrentUser(defaultUser)
+                    setCurrentUser(DEFAULT_OBJECTS.user)
                 });
             }).catch(err => {
             err.then(({message}) => {
                 setError({message: message, isError: true});
             })
                 .finally(() => {
-                    setLoaderState(0);
+                    setLoaderState(PRELOADER_STATES.off);
                 })
         })
     }
@@ -118,8 +110,8 @@ function App() {
      * Функция проверки токена и выдачи прав на вход на защищенные страницы
      * */
     function authorization() {
-        setLoaderState(1);
-        const token = localStorage.getItem('jwt');
+        setLoaderState(PRELOADER_STATES.on);
+        const token = localStorage.getItem(KEY_STORE.jwt);
         return Promise.all([
             mainApi.checkToken(token)
             , mainApi.getAboutMe()
@@ -131,19 +123,19 @@ function App() {
                 return Promise.resolve(dataUser);
             })
             .catch(() => {
-                setCurrentUser(defaultUser);
+                setCurrentUser(DEFAULT_OBJECTS.user);
             })
             .finally(() => {
-                setLoaderState(0);
+                setLoaderState(PRELOADER_STATES.off);
             });
     }
 
     function logout() {
-        localStorage.removeItem(KEY_STORE_JWT);
-        localStorage.removeItem(KEY_STORE_QUERY_SAVED_MOVIES);
-        localStorage.removeItem(KEY_STORE_QUERY_MOVIES);
-        setCurrentUser(defaultUser);
-        navigate(ROUTE_MAIN, {replace: true});
+        localStorage.removeItem(KEY_STORE.jwt);
+        localStorage.removeItem(KEY_STORE.queryMovies);
+        localStorage.removeItem(KEY_STORE.querySavedMovies);
+        setCurrentUser(DEFAULT_OBJECTS.user);
+        navigate(ROUTES.main, {replace: true});
     }
 
     function handlerUpdateProfile(newDataProfile) {
@@ -153,20 +145,20 @@ function App() {
                 setCurrentUser({...dataProfile, isAuth: currentUser.isAuth});
             }).catch(err => {
             err.then((err) => {
-                setError({isError: true, message: err.message, statusCode: err.statusCode});
+                setError({isError: true, message: err.message});
             });
         }).finally(() => {
-            setLoaderState(2);
+            setLoaderState(PRELOADER_STATES.message);
             setTimeout(() => {
-                setLoaderState(0);
-            }, 1500)
+                setLoaderState(PRELOADER_STATES.off);
+            }, TIME_OUTS.showAccess)
         })
     }
 
     function handleRequestMovies() {
-        setLoaderState(1);
-        setError(defaultError);
-        if (movies.length === 0) {
+        setLoaderState(PRELOADER_STATES.on);
+        setError(DEFAULT_OBJECTS.error);
+        if (movies.length === PRELOADER_STATES.off) {
             moviesApi.getAllMovies()
                 .then(movies => {
                     const newMovies = [];
@@ -182,8 +174,8 @@ function App() {
                             , duration: item.duration
                             , description: item.description
                             , trailerLink: item.trailerLink
-                            , image: moviesApiConfig.baseUrl + item.image.url
-                            , thumbnail: moviesApiConfig.baseUrl + item.image.formats.thumbnail.url
+                            , image: API_CONFIGS.movies_api.baseUrl + item.image.url
+                            , thumbnail: API_CONFIGS.movies_api.baseUrl + item.image.formats.thumbnail.url
                         }
                         savedMovies.forEach(savedMovie => {
                             if (savedMovie.id === item.id) {
@@ -197,10 +189,10 @@ function App() {
                 })
                 .catch(console.log)
                 .finally(() => {
-                    setLoaderState(0);
+                    setLoaderState(PRELOADER_STATES.off);
                 });
         }
-        setLoaderState(0);
+        setLoaderState(PRELOADER_STATES.off);
     }
 
     function handleError(error) {
@@ -249,19 +241,19 @@ function App() {
 
     return (
         isLoadingPopup
-            ? <Preloader state={isLoadingPopup} message={'Сохранено'}/>
+            ? <Preloader state={isLoadingPopup} message={'Сохраннено'}/>
             :
             <ErrorContext.Provider value={error}>
                 <CurrentUserContext.Provider value={currentUser}>
                     <div className="App">
-                        {isView(ELEMENT_NAME_HEADER) && <Header/>}
+                        {isView(ELEMENTS_NAME.header) && <Header/>}
                         <Routes>
-                            <Route path={ROUTE_ALL} element={<Navigate to={ROUTE_ERROR} replace={true}/>}/>
-                            <Route path={ROUTE_MAIN} element={<Landing/>}/>
-                            <Route path={ROUTE_SIGNIN}
+                            <Route path={ROUTES.all} element={<Navigate to={ROUTES.error} replace={true}/>}/>
+                            <Route path={ROUTES.main} element={<Landing/>}/>
+                            <Route path={ROUTES.signin}
                                    element={
                                        currentUser.isAuth
-                                           ? <Navigate to={ROUTE_MOVIES} replace/>
+                                           ? <Navigate to={ROUTES.movies} replace/>
                                            : <Login
                                                title='Рады видеть!'
                                                buttonText='Войти'
@@ -270,10 +262,10 @@ function App() {
                                                error={error}
                                            />}
                             />
-                            <Route path={ROUTE_SIGNUP}
+                            <Route path={ROUTES.signup}
                                    element={
                                        currentUser.isAuth
-                                           ? <Navigate to={ROUTE_MOVIES} replace/>
+                                           ? <Navigate to={ROUTES.movies} replace/>
                                            : <Register title='Добро пожаловать!'
                                                        buttonText='Зарегистрироваться'
                                                        classElement={'register'}
@@ -283,7 +275,7 @@ function App() {
                                            />
                                    }/>
 
-                            <Route path={ROUTE_MOVIES}
+                            <Route path={ROUTES.movies}
                                    element={
                                        <ProtectedRouteElement
                                            element={Movies}
@@ -296,7 +288,7 @@ function App() {
                                        />
                                    }
                             />
-                            <Route path={ROUTE_SAVED_MOVIES}
+                            <Route path={ROUTES.savedMovies}
                                    element={
                                        <ProtectedRouteElement
                                            element={SavedMovies}
@@ -310,7 +302,7 @@ function App() {
 
                                    }
                             />
-                            <Route path={ROUTE_PROFILE}
+                            <Route path={ROUTES.profile}
                                    element={
                                        <ProtectedRouteElement
                                            element={Profile}
@@ -318,17 +310,15 @@ function App() {
                                            onError={handleError}
                                            onUpdateProfile={handlerUpdateProfile}
                                            onLogout={logout}
-                                           className={'profile'}
-                                           // onValidating={handleValidation}
-                                           // isValid={validator}
+                                           className={ELEMENTS_NAME.profile}
                                        />
                                    }
                             />
-                            <Route path={ROUTE_ERROR} element={<Error code={'404'}
-                                                                      message={'Страница не найдена'}
-                                                                      refText={'Назад'}/>}/>
+                            <Route path={ROUTES.error} element={<Error code={'404'}
+                                                                       message={'Страница не найдена'}
+                                                                       refText={'Назад'}/>}/>
                         </Routes>
-                        {isView(ELEMENT_NAME_FOOTER) && <Footer/>}
+                        {isView(ELEMENTS_NAME.footer) && <Footer/>}
                     </div>
                 </CurrentUserContext.Provider>
             </ErrorContext.Provider>

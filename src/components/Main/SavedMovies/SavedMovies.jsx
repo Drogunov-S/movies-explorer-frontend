@@ -4,11 +4,16 @@ import Main from "../Main";
 import SearchForm from "../SearchForm/SearchForm";
 import {useEffect, useState} from "react";
 import {getFilteredMovies} from "../../../utils/utility";
-import {defaultError} from "../../../config/config";
-import {KEY_STORE_QUERY_SAVED_MOVIES, MESS_ERR_NOT_FOUND, MESS_NOT_SAVE_MOVIE} from "../../../config/constant";
+import {DEFAULT_OBJECTS, KEY_STORE, MESSAGES} from "../../../config/constant";
 
-function SavedMovies({movies, onSaveMovie, onDeleteMovie, error, onError}) {
-    const [query, setQuery] = useState({query: '', isShortFilms: false});
+function SavedMovies({
+                         movies
+                         , onSaveMovie
+                         , onDeleteMovie
+                         , error
+                         , onError
+                     }) {
+    const [query, setQuery] = useState(DEFAULT_OBJECTS.query);
     const [filteredMovies, setFilteredMovies] = useState([]);
 
     useEffect(() => {
@@ -16,28 +21,28 @@ function SavedMovies({movies, onSaveMovie, onDeleteMovie, error, onError}) {
             setFilteredMovies(movies);
         } else {
             setFilteredMovies([]);
-            onError({isError: true, message: MESS_NOT_SAVE_MOVIE});
+            onError({isError: true, message: MESSAGES.messNotSaveMovie});
         }
     }, [movies]);
 
     function handleFilter() {
         if (movies.length === 0) {
-            onError({isError: true, message: MESS_NOT_SAVE_MOVIE});
+            onError({isError: true, message: MESSAGES.messNotSaveMovie});
             return;
         }
         const foundMovies = getFilteredMovies(query, movies);
         if (foundMovies.length === 0) {
-            onError({isError: true, message: MESS_ERR_NOT_FOUND});
+            onError({isError: true, message: MESSAGES.errNotFound});
             setFilteredMovies([]);
         } else {
-            onError(defaultError);
+            onError(DEFAULT_OBJECTS.error);
             setFilteredMovies(foundMovies);
         }
     }
 
     function handlerCheckbox(checked) {
         if (movies.length > 0) {
-            const lastQueryState = JSON.parse(localStorage.getItem(KEY_STORE_QUERY_SAVED_MOVIES));
+            const lastQueryState = JSON.parse(localStorage.getItem(KEY_STORE.querySavedMovies));
             setFilteredMovies(getFilteredMovies({...lastQueryState, isShortFilms: checked}, movies))
         }
     }
@@ -49,7 +54,7 @@ function SavedMovies({movies, onSaveMovie, onDeleteMovie, error, onError}) {
                             onSearch={handleFilter}
                             query={query}
                             setQuery={setQuery}
-                            cookieKey={KEY_STORE_QUERY_SAVED_MOVIES}
+                            cookieKey={KEY_STORE.querySavedMovies}
                             onCheckbox={handlerCheckbox}
                 />
                 <MoviesCardList

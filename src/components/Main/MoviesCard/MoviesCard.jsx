@@ -3,7 +3,12 @@ import {Link} from "react-router-dom";
 import {getStringTime} from "../../../utils/utility";
 
 
-function MoviesCard({movie, onSave, onDelete}) {
+function MoviesCard({
+                        movie
+                        , onSave
+                        , onDelete
+                    }) {
+
     const alt = movie.nameRU;
     const link = movie.image;
     const isSave = Boolean(movie._id);

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Navigate} from "react-router-dom";
 import {CurrentUserContext} from "../../context/CurrentUserContext";
+import {ROUTES} from "../../config/constant";
 
 
 const ProtectedRouteElement = ({element: Component, ...props}) => {
@@ -8,7 +9,7 @@ const ProtectedRouteElement = ({element: Component, ...props}) => {
     return (
         loggedUser.isAuth
             ? <Component {...props} />
-            : <Navigate to={'/'}/>
+            : <Navigate to={ROUTES.main}/>
     )
 }
 

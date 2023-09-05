@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState} from "react";
 import {isEmail, isName} from "../utils/utility";
 import {CurrentUserContext} from "../context/CurrentUserContext";
-import {MESS_ERR_VALID_EMAIL, MESS_ERR_VALID_EQUALS_DATA, MESS_ERR_VALID_NAME} from "../config/constant";
+import {MESSAGES} from "../config/constant";
 
 export function useValidate(form, inputs) {
     const [fields, setFields] = useState({});
@@ -27,15 +27,15 @@ export function useValidate(form, inputs) {
 
         let message = e.target.validationMessage;
         if (name === 'email' && !isEmail(value)) {
-            message = message ? message : MESS_ERR_VALID_EMAIL;
+            message = message ? message : MESSAGES.errValidEmail;
             setValid({...isValid, [name]: false});
             setErrors({...errors, [name]: message});
         } else if (name === 'name' && !isName(value)) {
-            message = message ? message : MESS_ERR_VALID_NAME;
+            message = message ? message : MESSAGES.errValidName;
             setValid({...isValid, [name]: false});
             setErrors({...errors, name: message});
         } else if (form === 'profile' && currentUser[name] === value) {
-            message = message ? message : MESS_ERR_VALID_EQUALS_DATA;
+            message = message ? message : MESSAGES.errValidEqualsData;
             setValid({...isValid, [name]: false});
             setErrors({...errors, name: message});
         } else {
@@ -55,5 +55,10 @@ export function useValidate(form, inputs) {
         }
     }, [isValid]);
 
-    return {handleValidation, errors, isFormValid, setFormValid}
+    return {
+        handleValidation
+        , errors
+        , isFormValid
+        , setFormValid
+    }
 }

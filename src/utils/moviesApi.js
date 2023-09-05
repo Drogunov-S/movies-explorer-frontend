@@ -1,4 +1,4 @@
-import {moviesApiConfig} from '../config/config'
+import {API_CONFIGS} from "../config/constant";
 
 class MoviesApi {
     constructor({baseUrl, headers}) {
@@ -23,6 +23,6 @@ class MoviesApi {
     }
 }
 
-const moviesApi = new MoviesApi(moviesApiConfig);
+const moviesApi = new MoviesApi(API_CONFIGS.movies_api);
 
 export {moviesApi};

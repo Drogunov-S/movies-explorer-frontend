@@ -1,23 +1,31 @@
 import './Profile.css';
-import React, {useContext, useState} from 'react';
+import {useContext, useState} from 'react';
 import {CurrentUserContext} from "../../../context/CurrentUserContext";
 import Main from "../Main";
 import {useValidate} from "../../../hooks/useValidate";
 import Form from "../Form/Form";
-import {FORM_PROFILE} from "../../../config/constant";
+import {FORMS} from "../../../config/constant";
 
 
-function Profile({error, onUpdateProfile, onLogout, className}) {
+function Profile({
+                     error
+                     , onUpdateProfile
+                     , onLogout
+                     , className
+                 }) {
     const currentUser = useContext(CurrentUserContext);
     const [formValue, setFormValue] = useState(
         {name: currentUser.name, email: currentUser.email}
     );
     const [isFormEditable, setFormEditable] = useState(true);
-    const {handleValidation, errors, isFormValid} = useValidate(FORM_PROFILE.name, FORM_PROFILE.requiredField);
+    const {handleValidation, errors, isFormValid} = useValidate(
+        FORMS.profile.name
+        , FORMS.profile.requiredField
+    );
 
     function handleChange(e) {
         const {name, value} = e.target;
-        handleValidation(e, FORM_PROFILE.name);
+        handleValidation(e, FORMS.profile.name);
         setFormValue({
             ...formValue,
             [name]: value

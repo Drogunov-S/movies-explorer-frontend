@@ -1,4 +1,4 @@
-import {mainApiConfig} from '../config/config'
+import {API_CONFIGS} from "../config/constant";
 
 class MainApi {
     constructor({baseUrl, headers}) {
@@ -86,6 +86,6 @@ class MainApi {
 
 }
 
-const mainApi = new MainApi(mainApiConfig);
+const mainApi = new MainApi(API_CONFIGS.main_api);
 
 export {mainApi};

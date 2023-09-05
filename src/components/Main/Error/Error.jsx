@@ -2,7 +2,12 @@ import './Error.css';
 import {Link} from "react-router-dom";
 import Main from "../Main";
 
-function Error({code, message, refText}) {
+function Error(
+    {
+        code
+        , message
+        , refText
+    }) {
     return (
         <Main>
             <section className="error">

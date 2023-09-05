@@ -1,6 +1,6 @@
 .movie-card {
     max-width: 364px;
-    max-height:281px;
+    max-height: 281px;
     width: 100%;
     cursor: pointer;
     transition: 0.3s opacity ease-out;
@@ -92,7 +92,7 @@
 @media (max-width: 812px) {
     .movie-card {
         max-width: 339px;
-        max-height:262px;
+        max-height: 262px;
     }
 
     .movie-card__wrapper {
@@ -107,7 +107,7 @@
 @media (max-width: 380px) {
     .movie-card {
         max-width: 300px;
-        max-height:237px;
+        max-height: 237px;
     }
 
     .movie-card__wrapper {

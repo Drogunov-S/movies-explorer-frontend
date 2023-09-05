@@ -1,4 +1,4 @@
 import React from 'react';
-import {defaultUser} from "../config/config";
+import {DEFAULT_OBJECTS} from "../config/constant";
 
-export const CurrentUserContext= React.createContext(defaultUser);
+export const CurrentUserContext = React.createContext(DEFAULT_OBJECTS.user);

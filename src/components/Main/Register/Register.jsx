@@ -1,12 +1,16 @@
-import './Register.css';
 import logo from "../../../images/logos/logo.svg";
 import {Link} from "react-router-dom";
-import React, {useState} from "react";
+import {useState} from "react";
 import Main from "../Main";
 import Form from "../Form/Form";
 import {useValidate} from "../../../hooks/useValidate";
+import {FORMS} from "../../../config/constant";
 
-function Register({title, onRegistration, error}) {
+function Register({
+                      title
+                      , onRegistration
+                      , error
+                  }) {
 
     const [formValue, setFormValue] = useState(
         {name: '', email: '', password: ''}
@@ -15,7 +19,7 @@ function Register({title, onRegistration, error}) {
         handleValidation,
         errors,
         isFormValid
-    } = useValidate('register', [{name: 'name'}, {name: 'email'}, {name: 'password'}]);
+    } = useValidate(FORMS.register.name, FORMS.register.requiredField);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -28,14 +32,10 @@ function Register({title, onRegistration, error}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         if (!(formValue.email || formValue.password || formValue.name)) {
             return;
         }
-
         onRegistration(formValue);
-
-
     }
 
 

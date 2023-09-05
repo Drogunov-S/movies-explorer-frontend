@@ -5,6 +5,7 @@
     justify-content: center;
     background-color: #272727
 }
+
 .navigation__link {
     font-family: 'Inter', serif, sans-serif;
     font-style: normal;
@@ -22,8 +23,8 @@
 }
 
 @media (max-width: 500px) {
- .navigation__link {
-     font-size: 11px;
-     margin-left: 24px;
- }
+    .navigation__link {
+        font-size: 11px;
+        margin-left: 24px;
+    }
 }
