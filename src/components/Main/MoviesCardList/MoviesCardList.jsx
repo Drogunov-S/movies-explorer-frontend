@@ -35,12 +35,14 @@ function MoviesCardList({movies, className, onSaveMovie, onDeleteMovie, error}) 
         <div className={`movies-card-list ${className}`}>
             <div className={"movies-card-list__list"}>
                 {error.isError && <span className={'movies-card-list__error'}>{error.message}</span>}
-                {movies.map((movie) => {
-                    return (<MoviesCard key={pathname === ROUTES.movies ? movie.id : movie._id}
-                                        movie={movie}
-                                        onSave={onSaveMovie}
-                                        onDelete={onDeleteMovie}
-                    />);
+                {movies.map((movie, counter) => {
+                    if (counter < cardSizer.max) {
+                        return (<MoviesCard key={pathname === ROUTES.movies ? movie.id : movie._id}
+                                            movie={movie}
+                                            onSave={onSaveMovie}
+                                            onDelete={onDeleteMovie}
+                        />);
+                    }
                 })}
             </div>
             {movies.length > cardSizer.max && <div className={"movies-card-list__more"}>

@@ -17,12 +17,18 @@ function SavedMovies({
     const [filteredMovies, setFilteredMovies] = useState([]);
 
     useEffect(() => {
-        if (movies.length > 0) {
-            setFilteredMovies(movies);
-        } else {
+        if (movies.length === 0) {
             setFilteredMovies([]);
             onError({isError: true, message: MESSAGES.messNotSaveMovie});
+            return;
         }
+        const findMovies = getFilteredMovies(query, movies);
+        if (findMovies.length > 0) {
+            setFilteredMovies(findMovies);
+        } else {
+            onError({isError: true, message: MESSAGES.errNotFound});
+        }
+
     }, [movies]);
 
     function handleFilter() {
@@ -42,8 +48,7 @@ function SavedMovies({
 
     function handlerCheckbox(checked) {
         if (movies.length > 0) {
-            const lastQueryState = JSON.parse(localStorage.getItem(KEY_STORE.querySavedMovies));
-            setFilteredMovies(getFilteredMovies({...lastQueryState, isShortFilms: checked}, movies))
+            setFilteredMovies(getFilteredMovies({...query, isShortFilms: checked}, movies))
         }
     }
 

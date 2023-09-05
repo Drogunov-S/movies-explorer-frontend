@@ -24,7 +24,7 @@ export function useValidate(form, inputs) {
 
     const handleValidation = (e) => {
         const {name, value, validity: {valid}} = e.target;
-
+        // debugger
         let message = e.target.validationMessage;
         if (name === 'email' && !isEmail(value)) {
             message = message ? message : MESSAGES.errValidEmail;
@@ -35,9 +35,14 @@ export function useValidate(form, inputs) {
             setValid({...isValid, [name]: false});
             setErrors({...errors, name: message});
         } else if (form === 'profile' && currentUser[name] === value) {
-            message = message ? message : MESSAGES.errValidEqualsData;
+            message = message || message !== '' ? message : MESSAGES.errValidEqualsData;
             setValid({...isValid, [name]: false});
-            setErrors({...errors, name: message});
+            setErrors({...errors, [name]: message});
+        } else if (Object.values(fields).length > 0
+            && (value !== currentUser[name])
+        ) {
+            setFormValid(true);
+            setErrors({});
         } else {
             setErrors({...errors, [name]: e.target.validationMessage});
             setValid({...isValid, [name]: valid});

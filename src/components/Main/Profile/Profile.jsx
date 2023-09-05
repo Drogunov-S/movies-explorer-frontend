@@ -21,6 +21,7 @@ function Profile({
     const {handleValidation, errors, isFormValid} = useValidate(
         FORMS.profile.name
         , FORMS.profile.requiredField
+        // , [{name: 'name'}, {name: 'email'}]
     );
 
     function handleChange(e) {
@@ -64,7 +65,7 @@ function Profile({
                                 onChange={handleChange}
                             />
                         </label>
-                        <span className={'profile__error'}>{errors['name']}</span>
+                        <span className={'profile__error'}>{errors.name}</span>
                         <label className={"profile__line"} htmlFor={"email"}>
                             <span className={'profile__label profile__label_type_end'}>E-mail</span>
                             <input
@@ -82,7 +83,7 @@ function Profile({
                                 onChange={handleChange}
                             />
                         </label>
-                        <span className={'profile__error'}>{errors['email']}</span>
+                        <span className={'profile__error'}>{errors.email}</span>
                     </fieldset>
                     <div className={"profile__actions"}>
                         <button className={`profile__edit-btn profile__bnt ${!isFormEditable && 'profile__bnt_hidden'}`}

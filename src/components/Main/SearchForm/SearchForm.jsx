@@ -17,8 +17,11 @@ function SearchForm({
     }
 
     function handleCheckbox(e) {
-        setQuery({...query, isShortFilms: e.target.checked});
-        onCheckbox(e.target.checked);
+        const {checked} = e.target;
+        setQuery({...query, isShortFilms: checked});
+        const savedQuery = JSON.parse(localStorage.getItem(cookieKey));
+        localStorage.setItem(cookieKey, JSON.stringify({...savedQuery, checked}));
+        onCheckbox(checked);
     }
 
     function onSubmit() {

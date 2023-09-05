@@ -38,7 +38,7 @@ export const MESSAGES = {
     , errNotFound: 'Ничего не найдено'
     , errValidEmail: 'Неверный email'
     , errValidName: 'Введите корректное имя.'
-    , errValidEqualsData: 'Поле должно отличатся от старого'
+    , errValidEqualsData: 'Данные должны отличатся от старых'
 
 };
 
