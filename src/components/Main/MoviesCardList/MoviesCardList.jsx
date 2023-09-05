@@ -3,6 +3,7 @@ import './MoviesCardList.css';
 import MoviesCard from "../MoviesCard/MoviesCard";
 import {getMoviesCardSizer} from "../../../utils/utility";
 import {useLocation} from "react-router-dom";
+import {ROUTE_MOVIES} from "../../../config/routes";
 
 function MoviesCardList({movies, className, onSaveMovie, onDeleteMovie, error}) {
     const [cardSizer, setCardSizer] = useState(useCardsSizer());
@@ -33,14 +34,12 @@ function MoviesCardList({movies, className, onSaveMovie, onDeleteMovie, error}) 
         <div className={`movies-card-list ${className}`}>
             <div className={"movies-card-list__list"}>
                 {error.isError && <span className={'movies-card-list__error'}>{error.message}</span>}
-                {movies.map((movie, i) => {
-                    if (i < cardSizer.max) {
-                        return (<MoviesCard key={pathname === '/movies' ? movie.id : movie._id}
+                {movies.map((movie) => {
+                    return (<MoviesCard key={pathname === ROUTE_MOVIES ? movie.id : movie._id}
                                             movie={movie}
                                             onSave={onSaveMovie}
                                             onDelete={onDeleteMovie}
                         />);
-                    }
                 })}
             </div>
             {movies.length > cardSizer.max && <div className={"movies-card-list__more"}>

@@ -44,7 +44,7 @@ function App() {
     const [error, setError] = useState(defaultError)
     const [movies, setMovies] = useState([])
     const [savedMovies, setSavedMovies] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingPopup, setLoaderState] = useState(1);
 
 
     /**
@@ -59,7 +59,7 @@ function App() {
                     setCurrentUser(defaultUser);
                 });
         } else {
-            setIsLoading(false);
+            setLoaderState(0);
         }
     }, []);
 
@@ -71,7 +71,7 @@ function App() {
      * Функция регистрации нового пользователя
      * */
     function handlerRegister(userData) {
-        setIsLoading(true);
+        setLoaderState(1);
         mainApi.register(userData)
             .then(createdUser => {
                 handlerLogin({email: userData.email, password: userData.password});
@@ -86,7 +86,7 @@ function App() {
                 }
             })
             .finally(() => {
-                setIsLoading(false);
+                setLoaderState(0);
             });
     }
 
@@ -94,7 +94,7 @@ function App() {
      * Функция для входа в систему
      * */
     function handlerLogin(credentials) {
-        setIsLoading(true);
+        setLoaderState(1);
         mainApi.authentication(credentials)
             .then(({token}) => {
                 saveToken(KEY_STORE_JWT, token);
@@ -109,7 +109,7 @@ function App() {
                 setError({message: message, isError: true});
             })
                 .finally(() => {
-                    setIsLoading(false);
+                    setLoaderState(0);
                 })
         })
     }
@@ -118,7 +118,7 @@ function App() {
      * Функция проверки токена и выдачи прав на вход на защищенные страницы
      * */
     function authorization() {
-        setIsLoading(true);
+        setLoaderState(1);
         const token = localStorage.getItem('jwt');
         return Promise.all([
             mainApi.checkToken(token)
@@ -134,7 +134,7 @@ function App() {
                 setCurrentUser(defaultUser);
             })
             .finally(() => {
-                setIsLoading(false);
+                setLoaderState(0);
             });
     }
 
@@ -143,11 +143,11 @@ function App() {
         localStorage.removeItem(KEY_STORE_QUERY_SAVED_MOVIES);
         localStorage.removeItem(KEY_STORE_QUERY_MOVIES);
         setCurrentUser(defaultUser);
-        navigate(ROUTE_SIGNIN, {replace: true});
+        navigate(ROUTE_MAIN, {replace: true});
     }
 
     function handlerUpdateProfile(newDataProfile) {
-        setIsLoading(true);
+        setLoaderState(1);
         mainApi.updateProfile(newDataProfile)
             .then(dataProfile => {
                 setCurrentUser({...dataProfile, isAuth: currentUser.isAuth});
@@ -156,44 +156,51 @@ function App() {
                 setError({isError: true, message: err.message, statusCode: err.statusCode});
             });
         }).finally(() => {
-            setIsLoading(false);
+            setLoaderState(2);
+            setTimeout(() => {
+                setLoaderState(0);
+            }, 1500)
         })
     }
 
     function handleRequestMovies() {
-        setIsLoading(true);
+        setLoaderState(1);
         setError(defaultError);
-        moviesApi.getAllMovies()
-            .then(movies => {
-                const newMovies = [];
-                let newMovie;
-                movies.forEach(item => {
-                    newMovie = {
-                        id: item.id
-                        , nameRU: item.nameRU
-                        , nameEN: item.nameEN
-                        , director: item.director
-                        , country: item.country
-                        , year: item.year
-                        , duration: item.duration
-                        , description: item.description
-                        , trailerLink: item.trailerLink
-                        , image: moviesApiConfig.baseUrl + item.image.url
-                        , thumbnail: moviesApiConfig.baseUrl + item.image.formats.thumbnail.url
-                    }
-                    savedMovies.forEach(savedMovie => {
-                        if (savedMovie.id === item.id) {
-                            newMovie._id = savedMovie._id;
+        if (movies.length === 0) {
+            moviesApi.getAllMovies()
+                .then(movies => {
+                    const newMovies = [];
+                    let newMovie;
+                    movies.forEach(item => {
+                        newMovie = {
+                            id: item.id
+                            , nameRU: item.nameRU
+                            , nameEN: item.nameEN
+                            , director: item.director
+                            , country: item.country
+                            , year: item.year
+                            , duration: item.duration
+                            , description: item.description
+                            , trailerLink: item.trailerLink
+                            , image: moviesApiConfig.baseUrl + item.image.url
+                            , thumbnail: moviesApiConfig.baseUrl + item.image.formats.thumbnail.url
                         }
-                    })
-                    newMovies.push(newMovie);
+                        savedMovies.forEach(savedMovie => {
+                            if (savedMovie.id === item.id) {
+                                newMovie._id = savedMovie._id;
+                            }
+                        })
+                        newMovies.push(newMovie);
+                    });
+                    setMovies(newMovies);
+
+                })
+                .catch(console.log)
+                .finally(() => {
+                    setLoaderState(0);
                 });
-                setMovies(newMovies);
-            })
-            .catch(console.log)
-            .finally(() => {
-                setIsLoading(false);
-            });
+        }
+        setLoaderState(0);
     }
 
     function handleError(error) {
@@ -241,15 +248,15 @@ function App() {
     }
 
     return (
-        isLoading
-            ? <Preloader/>
+        isLoadingPopup
+            ? <Preloader state={isLoadingPopup} message={'Сохранено'}/>
             :
             <ErrorContext.Provider value={error}>
                 <CurrentUserContext.Provider value={currentUser}>
                     <div className="App">
                         {isView(ELEMENT_NAME_HEADER) && <Header/>}
                         <Routes>
-                            <Route path={ROUTE_ALL} element={<Navigate to={ROUTE_ERROR}/>}/>
+                            <Route path={ROUTE_ALL} element={<Navigate to={ROUTE_ERROR} replace={true}/>}/>
                             <Route path={ROUTE_MAIN} element={<Landing/>}/>
                             <Route path={ROUTE_SIGNIN}
                                    element={
@@ -319,7 +326,6 @@ function App() {
                             />
                             <Route path={ROUTE_ERROR} element={<Error code={'404'}
                                                                       message={'Страница не найдена'}
-                                                                      link={ROUTE_MAIN}
                                                                       refText={'Назад'}/>}/>
                         </Routes>
                         {isView(ELEMENT_NAME_FOOTER) && <Footer/>}

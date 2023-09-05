@@ -34,7 +34,7 @@ function saveToken(name, token) {
 
 function getFilteredMovies(query, arr) {
     return arr.filter(movie => {
-        return movie.nameRU.toLowerCase().includes(query.query.toLowerCase())
+        return !query.query || query.query === '' || movie.nameRU.toLowerCase().includes(query.query.toLowerCase())
             || movie.nameEN.toLowerCase().includes(query.query.toLowerCase())
     }).filter(movie => {
         return query.isShortFilms === false || movie.duration < 40

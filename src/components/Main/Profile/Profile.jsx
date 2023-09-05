@@ -4,25 +4,23 @@ import {CurrentUserContext} from "../../../context/CurrentUserContext";
 import Main from "../Main";
 import {useValidate} from "../../../hooks/useValidate";
 import Form from "../Form/Form";
+import {FORM_PROFILE} from "../../../config/constant";
 
 
 function Profile({error, onUpdateProfile, onLogout, className}) {
-    const {name, email} = useContext(CurrentUserContext);
+    const currentUser = useContext(CurrentUserContext);
     const [formValue, setFormValue] = useState(
-        {name: name, email: email}
+        {name: currentUser.name, email: currentUser.email}
     );
-
-    // const forms = useRef();
     const [isFormEditable, setFormEditable] = useState(true);
-    // debugger
-    const {handleValidation, errors, isFormValid} = useValidate('profile', []);
+    const {handleValidation, errors, isFormValid} = useValidate(FORM_PROFILE.name, FORM_PROFILE.requiredField);
 
     function handleChange(e) {
-        const input = e.target;
-        handleValidation(e, className);
+        const {name, value} = e.target;
+        handleValidation(e, FORM_PROFILE.name);
         setFormValue({
             ...formValue,
-            [input.name]: input.value
+            [name]: value
         })
     }
 
@@ -30,16 +28,14 @@ function Profile({error, onUpdateProfile, onLogout, className}) {
         setFormEditable(!isFormEditable);
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
+    function handleSubmit() {
         onUpdateProfile(formValue);
     }
 
     return (
         <Main>
-
             <section className={className} aria-label={'Профиль'}>
-                <h2 className="profile__title">Привет, {name}</h2>
+                <h2 className="profile__title">Привет, {currentUser.name}</h2>
                 <Form className={'profile'} onSubmit={handleSubmit} error={error} isEditable={isFormEditable}
                       isValidForm={isFormValid} bntSaveName={'Сохранить'}>
                     <fieldset className={'profile__fieldset'}>
@@ -93,6 +89,7 @@ function Profile({error, onUpdateProfile, onLogout, className}) {
                         >Выйти из аккаунта
                         </button>
                     </div>
+                    <span className={'profile__complete'}></span>
                 </Form>
             </section>
 

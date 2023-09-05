@@ -43,8 +43,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
     z-index: 10;
     padding: 20px;
 }
@@ -54,6 +52,33 @@
     height: 100px;
     position: fixed;
     top: 50%;
+}
+
+.preloader__container_message {
+    background-color: white;
+    border-radius: 10%;
+    opacity: .7;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preloader__message {
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19px;
+    font-family: Inter, Arial, sans-serif;
+    color: #202020;
+}
+
+.preloader__round_hidden {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .preloader__round {

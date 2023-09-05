@@ -12,24 +12,26 @@ function SavedMovies({movies, onSaveMovie, onDeleteMovie, error, onError}) {
     const [filteredMovies, setFilteredMovies] = useState([]);
 
     useEffect(() => {
-        const lastQueryState = JSON.parse(localStorage.getItem(KEY_STORE_QUERY_SAVED_MOVIES));
-        if (lastQueryState) {
-            setQuery({query: lastQueryState.query, isShortFilms: lastQueryState.isShortFilms});
-            if (movies.length > 0) {
-                setFilteredMovies(getFilteredMovies(lastQueryState, movies));
-            } else {
-                setFilteredMovies([]);
-                onError({isError: true, message: MESS_NOT_SAVE_MOVIE});
-            }
+        if (movies.length > 0) {
+            setFilteredMovies(movies);
+        } else {
+            setFilteredMovies([]);
+            onError({isError: true, message: MESS_NOT_SAVE_MOVIE});
         }
     }, [movies]);
 
     function handleFilter() {
-        if (movies.length === 0 || filteredMovies.length === 0) {
+        if (movies.length === 0) {
+            onError({isError: true, message: MESS_NOT_SAVE_MOVIE});
+            return;
+        }
+        const foundMovies = getFilteredMovies(query, movies);
+        if (foundMovies.length === 0) {
             onError({isError: true, message: MESS_ERR_NOT_FOUND});
+            setFilteredMovies([]);
         } else {
             onError(defaultError);
-            setFilteredMovies(getFilteredMovies(query, movies))
+            setFilteredMovies(foundMovies);
         }
     }
 

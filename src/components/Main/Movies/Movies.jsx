@@ -20,27 +20,24 @@ function Movies({onSearch, movies, onSaveMovie, onDeleteMovie, error, onError}) 
         const lastQueryState = JSON.parse(localStorage.getItem(KEY_STORE_QUERY_MOVIES));
         if (lastQueryState) {
             setQuery({query: lastQueryState.query, isShortFilms: lastQueryState.isShortFilms});
-            if (movies.length > 0) {
-                const newArray = getFilteredMovies(lastQueryState, movies);
-                setFilteredMovies(newArray);
-                if (newArray.length > 0) {
-                    onError(defaultError);
-                }
+            onSearch();
+            const finedMovies = getFilteredMovies(lastQueryState, movies);
+            if (finedMovies.length === 0) {
+
             }
-        }
-        if (movies.length === 0) {
+            setFilteredMovies();
+        } else if (movies.length === 0) {
             onError({isError: true, message: MESS_ENTER_QUERY});
         }
     }, [movies]);
 
     function handleFilter() {
-        if (movies.length === 0) {
-            if (query.query === '') {
-                onError({isError: true, message: MESS_ERR_NOT_ENTER_QUERY});
-                return
-            }
-            onSearch();
+        if (query.query === '') {
+            onError({isError: true, message: MESS_ERR_NOT_ENTER_QUERY});
+            setFilteredMovies([]);
+            return;
         }
+        onSearch();
         const newArr = getFilteredMovies(query, movies);
         setFilteredMovies(newArr);
         if (newArr.length === 0) {
@@ -53,7 +50,10 @@ function Movies({onSearch, movies, onSaveMovie, onDeleteMovie, error, onError}) 
     function handlerCheckbox(checked) {
         if (movies.length > 0) {
             const lastQueryState = JSON.parse(localStorage.getItem(KEY_STORE_QUERY_MOVIES));
-            setFilteredMovies(getFilteredMovies({...lastQueryState, isShortFilms: checked}, movies))
+            const newQueryState = {...lastQueryState, isShortFilms: checked};
+            localStorage.setItem(KEY_STORE_QUERY_MOVIES, JSON.stringify(newQueryState));
+            setFilteredMovies(getFilteredMovies(newQueryState, movies))
+            // debugger
         }
     }
 

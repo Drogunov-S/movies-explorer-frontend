@@ -8,7 +8,7 @@ function Form({onSubmit, children, error, className, isEditable, isValidForm, bn
     }
 
     return (
-        <form className={`form profile__form form__${className}`}
+        <form className={`form form__${className}`}
               name={className}
               onSubmit={handleSubmit}
         >
