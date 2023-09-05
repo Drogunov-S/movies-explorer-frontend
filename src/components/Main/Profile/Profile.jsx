@@ -21,12 +21,11 @@ function Profile({
     const {handleValidation, errors, isFormValid} = useValidate(
         FORMS.profile.name
         , FORMS.profile.requiredField
-        // , [{name: 'name'}, {name: 'email'}]
     );
 
     function handleChange(e) {
         const {name, value} = e.target;
-        handleValidation(e, FORMS.profile.name);
+        handleValidation(e);
         setFormValue({
             ...formValue,
             [name]: value

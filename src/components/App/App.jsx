@@ -65,7 +65,7 @@ function App() {
     function handlerRegister(userData) {
         setLoaderState(PRELOADER_STATES.on);
         mainApi.register(userData)
-            .then(createdUser => {
+            .then(() => {
                 handlerLogin({email: userData.email, password: userData.password});
             })
             .catch(err => {
@@ -96,13 +96,10 @@ function App() {
                     }).catch(() => {
                     setCurrentUser(DEFAULT_OBJECTS.user)
                 });
-            }).catch(err => {
-            err.then(({message}) => {
-                setError({message: message, isError: true});
-            })
-                .finally(() => {
-                    setLoaderState(PRELOADER_STATES.off);
-                })
+            }).catch(() => {
+            setError({message: MESSAGES.errAnother, isError: true});
+        }).finally(() => {
+            setLoaderState(PRELOADER_STATES.off);
         })
     }
 
@@ -227,14 +224,14 @@ function App() {
                     previousArr.push(item)
                     return previousArr;
                 }, []);
-                setMovies(newMovies)
+                setMovies(newMovies);
                 const newSavedMovies = savedMovies.reduce((previousArr, item) => {
                     if (item.id !== movie.id) {
                         previousArr.push(item)
                     }
                     return previousArr;
                 }, []);
-                setSavedMovies(newSavedMovies)
+                setSavedMovies(newSavedMovies);
             })
             .catch(console.log)
     }

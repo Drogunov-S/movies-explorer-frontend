@@ -51,9 +51,23 @@ function isName(string) {
     return regex.test(string);
 }
 
+function isEqualCurrentUserData(fields, user) {
+    let counterEqualsField = 0;
+    const fieldsKeys = Object.keys(fields);
+    fieldsKeys.forEach(key => {
+        if (fields[`${key}`] === user[`${key}`]) {
+            counterEqualsField++;
+        }
+    })
+    console.log('counterEqualsField === Object.keys(fields).length');
+    console.log(counterEqualsField === Object.keys(fields).length);
+    return counterEqualsField === Object.keys(fields).length;
+}
+
 export {
     isView
     , isName
+    , isEqualCurrentUserData
     , getPageName
     , getMoviesCardSizer
     , getStringTime

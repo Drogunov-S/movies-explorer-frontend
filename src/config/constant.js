@@ -12,6 +12,7 @@ export const ELEMENTS_NAME = {
     , techs: 'techs'
     , aboutMe: 'aboutMe'
     , profile: 'profile'
+    , movies: 'movies'
 };
 
 export const LINKS = {
@@ -39,6 +40,7 @@ export const MESSAGES = {
     , errValidEmail: 'Неверный email'
     , errValidName: 'Введите корректное имя.'
     , errValidEqualsData: 'Данные должны отличатся от старых'
+    , errPasswordLength: 'Длина пароля не менее 8 символов'
 
 };
 

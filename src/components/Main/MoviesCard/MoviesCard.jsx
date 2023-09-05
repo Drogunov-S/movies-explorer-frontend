@@ -1,6 +1,7 @@
 import './MoviesCard.css';
 import {Link} from "react-router-dom";
-import {getStringTime} from "../../../utils/utility";
+import {getPageName, getStringTime} from "../../../utils/utility";
+import {ELEMENTS_NAME} from "../../../config/constant";
 
 
 function MoviesCard({
@@ -12,6 +13,7 @@ function MoviesCard({
     const alt = movie.nameRU;
     const link = movie.image;
     const isSave = Boolean(movie._id);
+    const typeIconSave = getPageName() === ELEMENTS_NAME.movies ? 'movie-card__like_active' : 'movie-card__remove'
 
     function handleSave() {
         onSave(movie);
@@ -32,7 +34,7 @@ function MoviesCard({
                     <span className={"movie-card__timing"}>{getStringTime(movie.duration)}</span>
                 </div>
                 <button
-                    className={`${isSave ? 'movie-card__remove' : 'movie-card__like movie-card__like_active'}`}
+                    className={`${isSave ? `movie-card__like ${typeIconSave}` : 'movie-card__like'}`}
                     type="button"
                     onClick={isSave ? handleDelete : handleSave}
                 />

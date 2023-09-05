@@ -26,9 +26,9 @@ function SavedMovies({
         if (findMovies.length > 0) {
             setFilteredMovies(findMovies);
         } else {
+            setFilteredMovies([]);
             onError({isError: true, message: MESSAGES.errNotFound});
         }
-
     }, [movies]);
 
     function handleFilter() {
