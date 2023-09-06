@@ -109,11 +109,7 @@ function App() {
     function authorization() {
         setLoaderState(PRELOADER_STATES.on);
         const token = localStorage.getItem(KEY_STORE.jwt);
-        return Promise.all([
-            mainApi.checkToken(token)
-            , mainApi.getAboutMe()
-            , mainApi.getSavedMovies()
-        ])
+        return Promise.all([mainApi.checkToken(token), mainApi.getAboutMe(), mainApi.getSavedMovies()])
             .then(([isValidToken, dataUser, savedMovies]) => {
                 setCurrentUser({...dataUser, isAuth: true});
                 setSavedMovies(savedMovies);
@@ -140,12 +136,12 @@ function App() {
         mainApi.updateProfile(newDataProfile)
             .then(dataProfile => {
                 setCurrentUser({...dataProfile, isAuth: currentUser.isAuth});
+                setLoaderState(PRELOADER_STATES.message);
             }).catch(err => {
             err.then((err) => {
                 setError({isError: true, message: err.message});
             });
         }).finally(() => {
-            setLoaderState(PRELOADER_STATES.message);
             setTimeout(() => {
                 setLoaderState(PRELOADER_STATES.off);
             }, TIME_OUTS.showAccess)
@@ -162,17 +158,17 @@ function App() {
                     let newMovie;
                     movies.forEach(item => {
                         newMovie = {
-                            id: item.id
-                            , nameRU: item.nameRU
-                            , nameEN: item.nameEN
-                            , director: item.director
-                            , country: item.country
-                            , year: item.year
-                            , duration: item.duration
-                            , description: item.description
-                            , trailerLink: item.trailerLink
-                            , image: API_CONFIGS.movies_api.baseUrl + item.image.url
-                            , thumbnail: API_CONFIGS.movies_api.baseUrl + item.image.formats.thumbnail.url
+                            id: item.id,
+                            nameRU: item.nameRU,
+                            nameEN: item.nameEN,
+                            director: item.director,
+                            country: item.country,
+                            year: item.year,
+                            duration: item.duration,
+                            description: item.description,
+                            trailerLink: item.trailerLink,
+                            image: API_CONFIGS.movies_api.baseUrl + item.image.url,
+                            thumbnail: API_CONFIGS.movies_api.baseUrl + item.image.formats.thumbnail.url
                         }
                         savedMovies.forEach(savedMovie => {
                             if (savedMovie.id === item.id) {
@@ -209,8 +205,7 @@ function App() {
                 setSavedMovies([...savedMovies, saveMovie])
                 setMovies(newMovies);
             })
-            .catch(console.log)
-        ;
+            .catch(console.log);
     }
 
     function handleDeleteMovie(movie) {
@@ -236,10 +231,7 @@ function App() {
             .catch(console.log)
     }
 
-    return (
-        isLoadingPopup
-            ? <Preloader state={isLoadingPopup} message={'Сохраннено'}/>
-            :
+    return (isLoadingPopup ? <Preloader state={isLoadingPopup} message={'Сохраннено'}/> :
             <ErrorContext.Provider value={error}>
                 <CurrentUserContext.Provider value={currentUser}>
                     <div className="App">
@@ -248,68 +240,56 @@ function App() {
                             <Route path={ROUTES.all} element={<Navigate to={ROUTES.error} replace={true}/>}/>
                             <Route path={ROUTES.main} element={<Landing/>}/>
                             <Route path={ROUTES.signin}
-                                   element={
-                                       currentUser.isAuth
-                                           ? <Navigate to={ROUTES.movies} replace/>
-                                           : <Login
-                                               title='Рады видеть!'
-                                               buttonText='Войти'
-                                               onLogin={handlerLogin}
-                                               onError={handleError}
-                                               error={error}
-                                           />}
+                                   element={currentUser.isAuth ? <Navigate to={ROUTES.movies} replace/> : <Login
+                                       title='Рады видеть!'
+                                       buttonText='Войти'
+                                       onLogin={handlerLogin}
+                                       onError={handleError}
+                                       error={error}
+                                   />}
                             />
                             <Route path={ROUTES.signup}
-                                   element={
-                                       currentUser.isAuth
-                                           ? <Navigate to={ROUTES.movies} replace/>
-                                           : <Register title='Добро пожаловать!'
-                                                       buttonText='Зарегистрироваться'
-                                                       classElement={'register'}
-                                                       onRegistration={handlerRegister}
-                                                       onError={handleError}
-                                                       error={error}
-                                           />
-                                   }/>
+                                   element={currentUser.isAuth ? <Navigate to={ROUTES.movies} replace/> :
+                                       <Register title='Добро пожаловать!'
+                                                 buttonText='Зарегистрироваться'
+                                                 classElement={'register'}
+                                                 onRegistration={handlerRegister}
+                                                 onError={handleError}
+                                                 error={error}
+                                       />}/>
 
                             <Route path={ROUTES.movies}
-                                   element={
-                                       <ProtectedRouteElement
-                                           element={Movies}
-                                           movies={movies}
-                                           onSearch={handleRequestMovies}
-                                           onSaveMovie={handleSaveMovie}
-                                           onDeleteMovie={handleDeleteMovie}
-                                           error={error}
-                                           onError={handleError}
-                                       />
-                                   }
+                                   element={<ProtectedRouteElement
+                                       element={Movies}
+                                       movies={movies}
+                                       onSearch={handleRequestMovies}
+                                       onSaveMovie={handleSaveMovie}
+                                       onDeleteMovie={handleDeleteMovie}
+                                       error={error}
+                                       onError={handleError}
+                                   />}
                             />
                             <Route path={ROUTES.savedMovies}
-                                   element={
-                                       <ProtectedRouteElement
-                                           element={SavedMovies}
-                                           movies={savedMovies}
-                                           onSerarch={'null'}
-                                           onSaveMovie={handleSaveMovie}
-                                           onDeleteMovie={handleDeleteMovie}
-                                           error={error}
-                                           onError={handleError}
-                                       />
+                                   element={<ProtectedRouteElement
+                                       element={SavedMovies}
+                                       movies={savedMovies}
+                                       onSaveMovie={handleSaveMovie}
+                                       onDeleteMovie={handleDeleteMovie}
+                                       error={error}
+                                       onError={handleError}
+                                   />
 
                                    }
                             />
                             <Route path={ROUTES.profile}
-                                   element={
-                                       <ProtectedRouteElement
-                                           element={Profile}
-                                           error={error}
-                                           onError={handleError}
-                                           onUpdateProfile={handlerUpdateProfile}
-                                           onLogout={logout}
-                                           className={ELEMENTS_NAME.profile}
-                                       />
-                                   }
+                                   element={<ProtectedRouteElement
+                                       element={Profile}
+                                       error={error}
+                                       onError={handleError}
+                                       onUpdateProfile={handlerUpdateProfile}
+                                       onLogout={logout}
+                                       className={ELEMENTS_NAME.profile}
+                                   />}
                             />
                             <Route path={ROUTES.error} element={<Error code={'404'}
                                                                        message={'Страница не найдена'}
@@ -318,8 +298,7 @@ function App() {
                         {isView(ELEMENTS_NAME.footer) && <Footer/>}
                     </div>
                 </CurrentUserContext.Provider>
-            </ErrorContext.Provider>
-    );
+            </ErrorContext.Provider>);
 }
 
 export default App;

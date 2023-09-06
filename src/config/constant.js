@@ -79,7 +79,6 @@ export const DEFAULT_OBJECTS = {
 
 export const API_CONFIGS = {
     main_api: {
-        // baseUrl: 'http://localhost:3005',
         baseUrl: 'https://api.movie-drogunov.nomoredomains.xyz',
         headers: {
             'Accept': 'application/json'

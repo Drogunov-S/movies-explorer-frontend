@@ -12,11 +12,11 @@ function getPageName() {
 
 function getMoviesCardSizer(width) {
     if (width >= 1280) {
-        return {rows: 4, columns: 3, max: 12, addsCard: 3}
+        return {columns: 3, max: 12, addsCard: 3}
     } else if (width >= 768) {
-        return {rows: 4, columns: 2, max: 8, addsCard: 2}
+        return {columns: 2, max: 8, addsCard: 2}
     } else {
-        return {rows: 5, columns: 1, max: 5, addsCard: 2}
+        return {columns: 1, max: 5, addsCard: 2}
     }
 }
 
@@ -59,8 +59,6 @@ function isEqualCurrentUserData(fields, user) {
             counterEqualsField++;
         }
     })
-    console.log('counterEqualsField === Object.keys(fields).length');
-    console.log(counterEqualsField === Object.keys(fields).length);
     return counterEqualsField === Object.keys(fields).length;
 }
 

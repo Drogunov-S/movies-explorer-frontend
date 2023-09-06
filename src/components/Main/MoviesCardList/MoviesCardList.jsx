@@ -5,7 +5,13 @@ import {getMoviesCardSizer} from "../../../utils/utility";
 import {useLocation} from "react-router-dom";
 import {ROUTES} from "../../../config/constant";
 
-function MoviesCardList({movies, className, onSaveMovie, onDeleteMovie, error}) {
+function MoviesCardList({
+                            movies
+                            , className
+                            , onSaveMovie
+                            , onDeleteMovie
+                            , error
+                        }) {
     const [cardSizer, setCardSizer] = useState(useCardsSizer());
     const {pathname} = useLocation();
 

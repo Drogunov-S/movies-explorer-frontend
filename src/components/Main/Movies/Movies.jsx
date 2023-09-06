@@ -55,8 +55,7 @@ function Movies({
             const lastQueryState = JSON.parse(localStorage.getItem(KEY_STORE.queryMovies));
             const newQueryState = {...lastQueryState, isShortFilms: checked};
             localStorage.setItem(KEY_STORE.queryMovies, JSON.stringify(newQueryState));
-            setFilteredMovies(getFilteredMovies(newQueryState, movies))
-            // debugger
+            setFilteredMovies(getFilteredMovies(newQueryState, movies));
         }
     }
 

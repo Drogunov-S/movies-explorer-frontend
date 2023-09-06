@@ -1,8 +1,7 @@
 import './Form.css';
 import React from "react";
 
-function Form(
-    {
+function Form({
         onSubmit
         , children
         , error

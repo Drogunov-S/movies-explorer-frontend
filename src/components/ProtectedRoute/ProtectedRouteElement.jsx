@@ -5,9 +5,9 @@ import {ROUTES} from "../../config/constant";
 
 
 const ProtectedRouteElement = ({element: Component, ...props}) => {
-    const loggedUser = React.useContext(CurrentUserContext);
+    const {isAuth} = React.useContext(CurrentUserContext);
     return (
-        loggedUser.isAuth
+        isAuth
             ? <Component {...props} />
             : <Navigate to={ROUTES.main}/>
     )

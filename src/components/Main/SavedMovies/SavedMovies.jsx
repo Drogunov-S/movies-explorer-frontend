@@ -47,8 +47,17 @@ function SavedMovies({
     }
 
     function handlerCheckbox(checked) {
-        if (movies.length > 0) {
-            setFilteredMovies(getFilteredMovies({...query, isShortFilms: checked}, movies))
+        if (movies.length === 0) {
+            onError({isError: true, message: MESSAGES.messNotSaveMovie});
+            return
+        }
+        const foundMovies = getFilteredMovies({...query, isShortFilms: checked}, movies)
+        if (foundMovies.length === 0) {
+            onError({isError: true, message: MESSAGES.errNotFound});
+            setFilteredMovies([]);
+        } else {
+            onError(DEFAULT_OBJECTS.error);
+            setFilteredMovies(foundMovies);
         }
     }
 

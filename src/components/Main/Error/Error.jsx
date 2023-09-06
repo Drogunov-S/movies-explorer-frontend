@@ -2,8 +2,7 @@ import './Error.css';
 import {Link} from "react-router-dom";
 import Main from "../Main";
 
-function Error(
-    {
+function Error({
         code
         , message
         , refText

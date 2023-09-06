@@ -7,8 +7,6 @@ import Navigation from "./Navigation/Navigation";
 import Main from "../Main";
 
 function Landing() {
-
-
     return (
         <Main>
             <Promo/>
