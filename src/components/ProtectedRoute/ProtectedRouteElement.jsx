@@ -1,15 +1,15 @@
 import React from 'react';
 import {Navigate} from "react-router-dom";
 import {CurrentUserContext} from "../../context/CurrentUserContext";
+import {ROUTES} from "../../config/constant";
 
 
 const ProtectedRouteElement = ({element: Component, ...props}) => {
-    const loggedUser = React.useContext(CurrentUserContext);
-
+    const {isAuth} = React.useContext(CurrentUserContext);
     return (
-        loggedUser.isAuth
+        isAuth
             ? <Component {...props} />
-            : <Navigate to={'/sign-in'} replace/>
+            : <Navigate to={ROUTES.main}/>
     )
 }
 

@@ -1,4 +1,4 @@
-import {moviesApiConfig} from '../config/config'
+import {API_CONFIGS} from "../config/constant";
 
 class MoviesApi {
     constructor({baseUrl, headers}) {
@@ -14,7 +14,6 @@ class MoviesApi {
     }
 
     _request(url, options) {
-        // options.headers.authorization = localStorage.getItem('jwt');
         return fetch(url, options)
             .then(response => {
                 return response.ok
@@ -22,7 +21,8 @@ class MoviesApi {
                     : Promise.reject(response.json());
             })
     }
-
 }
 
-const moviesApi = new MoviesApi(moviesApiConfig);
+const moviesApi = new MoviesApi(API_CONFIGS.movies_api);
+
+export {moviesApi};

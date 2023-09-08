@@ -1,4 +1,4 @@
-import {mainApiConfig} from '../config/config'
+import {API_CONFIGS} from "../config/constant";
 
 class MainApi {
     constructor({baseUrl, headers}) {
@@ -14,12 +14,26 @@ class MainApi {
         })
     }
 
-    authorize(credential) {
+    authentication(credential) {
         return this._request(`${this._baseUrl}/signin`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify(credential)
         })
+    }
+
+    checkToken(token) {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: 'GET',
+            headers: {...this._headers, authorization: token},
+        })
+            .then(response => {
+                // console.log('response.okresponse.ok');
+                // console.log(response.ok);
+                return response.ok
+                    ? Promise.resolve(true)
+                    : Promise.reject(response.json());
+            })
     }
 
     getAboutMe() {
@@ -39,6 +53,7 @@ class MainApi {
 
     getSavedMovies() {
         return this._request(`${this._baseUrl}/movies`, {
+            method: 'GET',
             headers: this._headers
         })
     }
@@ -68,8 +83,9 @@ class MainApi {
             })
     }
 
+
 }
 
-const mainApi = new MainApi(mainApiConfig);
+const mainApi = new MainApi(API_CONFIGS.main_api);
 
 export {mainApi};

@@ -72,7 +72,6 @@
     color: #8B8B8B;
     display: block;
     margin-top: 14px;
-    /*min-height: 31px;*/
 }
 
 .graf__parts {
@@ -89,7 +88,6 @@
 }
 
 .graf__item-1 {
-    /*width: calc(100% / 5);*/
 }
 
 .graf__part-1 {
@@ -108,7 +106,6 @@
 }
 
 .graf__item-2 {
-    /*width: calc(100% / 4);*/
 }
 
 .graf__part-2 {
@@ -191,6 +188,4 @@
         line-height: 13px;
         margin-left: 2px;
     }
-
 }
-

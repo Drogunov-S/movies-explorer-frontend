@@ -33,7 +33,6 @@
     line-height: 58px;
     letter-spacing: -0.04em;
     color: #FFFFFF;
-    /*min-width: 600px;*/
     min-height: 58px;
     text-align: left;
     margin-top: 0;
@@ -96,6 +95,7 @@
         padding: 80px 50px 90px;
     }
 
+    /*noinspection DuplicatedCode*/
     .about-me__name {
         font-size: 40px;
         line-height: 40px;

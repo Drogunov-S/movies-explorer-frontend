@@ -1,6 +1,7 @@
 import './AboutMe.css';
 import defaultImg from '../../../../images/img.png'
 import {Link} from "react-router-dom";
+import {LINKS} from "../../../../config/constant";
 
 function AboutMe() {
     return (
@@ -19,7 +20,8 @@ function AboutMe() {
                         и ушёл с постоянной работы.</p>
                     <ul className={"about-me__links"}>
                         <li className={"about-me__line"}>
-                            <Link target='_blank'  className={"bnt about-me__link"} to={"https://github.com/Drogunov-S"}>GitHub</Link>
+                            <Link target='_blank' className={"bnt about-me__link"}
+                                  to={LINKS.gitHub}>GitHub</Link>
                         </li>
                     </ul>
                 </div>

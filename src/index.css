@@ -13,11 +13,22 @@
 
 .bnt {
     background-color: transparent;
-    transition:  opacity ease-out 0.3s;
+    transition: opacity ease-out 0.3s;
     border: none;
     padding: 0;
+    cursor: pointer;
 }
 
 .bnt:hover {
     opacity: .6;
+}
+
+.bnt:disabled {
+    background-color: #8B8B8B;
+    color: #FFFFFF;
+    cursor: default;
+}
+
+.bnt:disabled:hover {
+    opacity: 1;
 }

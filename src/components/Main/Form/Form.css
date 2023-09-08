@@ -1,0 +1,104 @@
+.form__profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 13px;
+}
+
+.form__bnt-save_type_register {
+    margin-top: 93px;
+}
+
+.form__login {
+    margin-top: 60px;
+    min-width: 398px
+}
+
+.form__register {
+    min-width: 398px
+}
+
+.form__actions_type_profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form__error {
+    color: red;
+    padding-bottom: 20px;
+    display: block;
+    text-align: left;
+    min-height: 35px;
+    box-sizing: border-box;
+    padding-top: 5px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    transition: opacity .3s;
+}
+
+.from__bnt-save {
+    max-width: 410px;
+    width: 100%;
+    height: 45px;
+    background-color: #4285F4;
+    cursor: pointer;
+    color: #FFFFFF;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    align-items: center;
+    text-align: center;
+}
+
+.form__bnt-save_type_login {
+    color: #FFFFFF;
+    background-color: #4285F4;
+    width: 100%;
+    border: none;
+    font-size: 14px;
+    line-height: 17px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 144px;
+    padding: 14px 0;
+}
+
+
+.form__bnt_hidden {
+    visibility: hidden;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+}
+
+@media (max-width: 462px) {
+    .form__login {
+        min-width: 260px;
+    }
+
+    .form__register {
+        min-width: 260px;
+    }
+}
+
+@media (max-width: 320px) {
+    .from__bnt_type_profile {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .form__bnt-save_type_register {
+        margin-top: 180px;
+    }
+}
+

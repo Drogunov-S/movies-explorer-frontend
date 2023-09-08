@@ -1,7 +1,6 @@
 .profile {
     display: flex;
     flex-direction: column;
-    font-family: 'Inter', sans-serif, serif;
     text-align: center;
     color: #FFFFFF;
     padding-top: 74px;
@@ -16,20 +15,9 @@
     margin: 0 0 119px 0;
 }
 
-.profile__form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 11px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 13px;
-}
 
 .profile__line {
     min-width: 410px;
-    /*min-height: 31px;*/
     border-bottom: 1px solid #424242;
     display: flex;
     justify-content: space-between;
@@ -43,6 +31,7 @@
 }
 
 .profile__fieldset {
+    max-width: 410px;
     margin: 0;
     border: none;
     padding-bottom: 187px;
@@ -86,6 +75,7 @@
 
 .profile__error {
     color: red;
+    padding-top: 3px;
     padding-bottom: 20px;
 }
 
@@ -122,7 +112,8 @@
 }
 
 .profile__logout-bnt {
-    padding-top: 16px;
+    margin-top: 15px;
+    padding-top: 0;
     color: #EE3465;
 }
 

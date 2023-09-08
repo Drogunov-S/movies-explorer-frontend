@@ -1,68 +1,62 @@
 import './Login.css';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import logo from "../../../images/logos/logo.svg";
 import {Link} from "react-router-dom";
-// import {mainApi} from "../../../utils/mainApi";
 import Main from "../Main";
+import {useValidate} from "../../../hooks/useValidate";
+import Form from "../Form/Form";
+import {FORMS, ROUTES} from "../../../config/constant";
 
-// import auth from "../utils/Auth";
+function Login(
+    {
+        title
+        , onLogin
+        , error
+    }) {
 
-function Login({title, buttonText, onLogin/*, onError*/}) {
-
+    const {
+        handleValidation,
+        errors,
+        isFormValid,
+    } = useValidate(FORMS.login.name, FORMS.login.requiredField);
     const [formValue, setFormValue] = useState(
         {email: '', password: ''}
     );
 
     const handleChange = (e) => {
         const {name, value} = e.target;
+        handleValidation(e);
         setFormValue({
             ...formValue,
             [name]: value
         })
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        //
-        onLogin({token: 'token'});
-
-        //
-
-        ////TODO на время верстки
-        /*if (!(formValue.email || formValue.password)) {
-            return;
-        }
-        mainApi.authorize(formValue)
-            .then(({token}) => {
-              onLogin(token);
-              setFormValue({email: '', password: ''});
-            })
-            .catch(err => {
-              err.then(({message}) => {
-                // onError({message: message, isError: true});
-                  console.log(message);
-              })
-            })*/
+    function handleSubmit() {
+        onLogin(formValue);
     }
-
 
     return (
         <Main>
             <section className="container" aria-label={'Вход'}>
-                <div className="data-form">
-                    <Link to={'/'} className={"bnt data-form__logo"}>
-                        <img className="data-form__logo-img"
+                <div className="login">
+                    <Link to={'/'} className={"bnt login__logo"}>
+                        <img className="login__logo-img"
                              alt={"Логотип"}
                              src={logo}
                         />
                     </Link>
-                    <h2 className="data-form__title">{title}</h2>
-                    <form className="data-form__form"
-                          onSubmit={handleSubmit}
+                    <h2 className="login__title">{title}</h2>
+                    <Form
+                        className={'login'}
+                        bntSaveName={'Войти'}
+                        error={error}
+                        onSubmit={handleSubmit}
+                        isValidForm={isFormValid}
                     >
-                        <label className={"data-form__label"} htmlFor={"email"}>E-mail</label>
+                        <label className={"login__label"} htmlFor={"email"}>E-mail</label>
                         <input
-                            className="data-form__input data-form__input_theme_dark"
+                            className="login__input login__input_theme_dark"
                             id="email"
                             name="email"
                             type="email"
@@ -74,9 +68,10 @@ function Login({title, buttonText, onLogin/*, onError*/}) {
                             value={formValue.email}
                             onChange={handleChange}
                         />
-                        <label className={"data-form__label"} htmlFor={"password"}>Пароль</label>
+                        <span className={'login__error'}>{errors.email}</span>
+                        <label className={"login__label"} htmlFor={"password"}>Пароль</label>
                         <input
-                            className="data-form__input data-form__input_theme_dark"
+                            className="login__input login__input_theme_dark"
                             id="password"
                             name="password"
                             type="password"
@@ -88,14 +83,11 @@ function Login({title, buttonText, onLogin/*, onError*/}) {
                             value={formValue.password}
                             onChange={handleChange}
                         />
-                        <span className="data-form__input-error"></span>
-                        <button className="data-form__btn-save"
-                                type="submit">{buttonText}
-                        </button>
-                    </form>
-                    <div className="data-form__wrapper">
-                        <p className={"data-form__subtext"}>Ещё не зарегистрированы?</p>
-                        <Link to="/sign-up" className="bnt data-form__link">Регистрация</Link>
+                        <span className={'login__error'}>{errors.password}</span>
+                    </Form>
+                    <div className="login__wrapper">
+                        <p className={"login__subtext"}>Ещё не зарегистрированы?</p>
+                        <Link to={ROUTES.signup} className="bnt login__link">Регистрация</Link>
                     </div>
                 </div>
             </section>
